@@ -1,4 +1,5 @@
 package lk.ijse.Hostel_Management_System.util;
+import lk.ijse.Hostel_Management_System.entity.Room;
 import lk.ijse.Hostel_Management_System.entity.Student;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -14,11 +15,12 @@ public class FactoryConfiguration {
         try {
             Configuration configuration = new Configuration();
             ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
-            configuration.addAnnotatedClass(Student.class);
+            configuration.addAnnotatedClass(Student.class)
+            .addAnnotatedClass(Room.class);
             sessionFactory = configuration.buildSessionFactory(serviceRegistry);
         } catch (Exception e) {
             e.printStackTrace();
-            throw new RuntimeException("There is issue in hibernate util");
+            throw new RuntimeException("There is issue in factory Configuration");
         }
 
     }

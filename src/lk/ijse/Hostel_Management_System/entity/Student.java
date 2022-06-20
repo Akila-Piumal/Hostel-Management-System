@@ -18,7 +18,7 @@ public class Student {
     private String studentId;
     @Column(nullable = false)
     private String name;
-    @Column(columnDefinition = "TEXT",nullable = false)
+    @Column(columnDefinition = "TEXT", nullable = false)
     private String address;
     @Column(nullable = false)
     private String contactNo;
@@ -26,6 +26,4 @@ public class Student {
     private LocalDate dob;
     @Column(nullable = false)
     private String gender;
-
-    //slkslksss
 }

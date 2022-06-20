@@ -3,13 +3,12 @@ import lk.ijse.Hostel_Management_System.util.FactoryConfiguration;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import java.io.IOException;
 import java.time.LocalDate;
 
 public class AppInitializer {
     public static void main(String[] args) {
 
-        Student student=new Student();
+        Student student = new Student();
         student.setStudentId("S001");
         student.setName("Akila");
         student.setAddress("Mathugama");
@@ -18,12 +17,12 @@ public class AppInitializer {
         student.setDob(LocalDate.parse("1999-04-13"));
 
         Session session = FactoryConfiguration.getInstance().getSession();
-            Transaction transaction = session.beginTransaction();
+        Transaction transaction = session.beginTransaction();
 
-            session.save(student);
+//        session.save(student);
 
-            transaction.commit();
-            session.close();
+        transaction.commit();
+        session.close();
 
     }
 }
