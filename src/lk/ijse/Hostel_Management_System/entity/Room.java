@@ -7,6 +7,9 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import java.util.ArrayList;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -15,10 +18,17 @@ import javax.persistence.Id;
 public class Room {
     @Id
     @Column(name = "Room_Type_Id")
-    String roomTypeId;
+    private String roomTypeId;
+
     @Column(nullable = false)
-    String type;
-    String keyMoney;
+    private String type;
+
+    private String keyMoney;
+
     @Column(name = "Rooms_Qty",nullable = false)
-    int qty;
+    private int qty;
+
+    @OneToMany(mappedBy = "room")
+    private List<Reservation> reservationList=new ArrayList<>();
+
 }

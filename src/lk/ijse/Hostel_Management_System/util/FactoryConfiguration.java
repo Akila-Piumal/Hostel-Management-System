@@ -1,4 +1,5 @@
 package lk.ijse.Hostel_Management_System.util;
+import lk.ijse.Hostel_Management_System.entity.Reservation;
 import lk.ijse.Hostel_Management_System.entity.Room;
 import lk.ijse.Hostel_Management_System.entity.Student;
 import org.hibernate.Session;
@@ -16,7 +17,8 @@ public class FactoryConfiguration {
             Configuration configuration = new Configuration();
             ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
             configuration.addAnnotatedClass(Student.class)
-            .addAnnotatedClass(Room.class);
+            .addAnnotatedClass(Room.class)
+            .addAnnotatedClass(Reservation.class);
             sessionFactory = configuration.buildSessionFactory(serviceRegistry);
         } catch (Exception e) {
             e.printStackTrace();
