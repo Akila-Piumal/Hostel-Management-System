@@ -27,7 +27,7 @@
          <children>
             <ImageView fitHeight="123.0" fitWidth="130.0" layoutX="204.0" layoutY="28.0" pickOnBounds="true">
                <image>
-                  <Image url="@../../../../../../../../Projects/5.%20LAYERED%20PROJECT%20SUPER%20MARKET/SuperMarket/src/lk/ijse/pos/view/assests/images/login.png" />
+                  <Image url="@assests/images/login.png" />
                </image>
             </ImageView>
             <Label layoutX="184.0" layoutY="151.0" text="LOG IN" textFill="WHITE">
