@@ -1,16 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Hostel_Management_System.controller.DashBoardFormController">
+<AnchorPane fx:id="dashBoardFormContext" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Hostel_Management_System.controller.DashBoardFormController">
    <children>
-      <Label layoutX="524.0" layoutY="237.0" text="Hiiiii">
-         <font>
-            <Font name="System Bold" size="96.0" />
-         </font>
-      </Label>
+      <AnchorPane prefHeight="800.0" prefWidth="353.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="800.0" layoutX="-1.0" stroke="WHITE" strokeType="INSIDE" width="353.0">
+               <fill>
+                  <LinearGradient endX="0.31553398058252424" endY="0.5145631067961165" startX="0.8106796116504854" startY="0.587378640776699">
+                     <stops>
+                        <Stop color="WHITE" />
+                        <Stop color="#5bf8ff" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </fill>
+            </Rectangle>
+            <Button layoutX="22.0" layoutY="178.0" mnemonicParsing="false" onAction="#manageStudentsFormOnAction" prefHeight="60.0" prefWidth="307.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 20; -fx-background-radius: 20;" text="Manage Students">
+               <font>
+                  <Font name="Arial Bold" size="28.0" />
+               </font>
+            </Button>
+            <Button layoutX="22.0" layoutY="288.0" mnemonicParsing="false" onAction="#manageRoomsFormOnAction" prefHeight="60.0" prefWidth="307.0" style="-fx-background-color: white; -fx-border-radius: 20; -fx-border-color: black; -fx-background-radius: 20;" text="Manage Rooms">
+               <font>
+                  <Font name="Arial Bold" size="28.0" />
+               </font>
+            </Button>
+            <Button layoutX="22.0" layoutY="398.0" mnemonicParsing="false" onAction="#reservationDetailsFormOnAction" prefHeight="60.0" prefWidth="307.0" style="-fx-background-color: white; -fx-border-radius: 20; -fx-border-color: black; -fx-background-radius: 20;" text="Reservation Details">
+               <font>
+                  <Font name="Arial Bold" size="28.0" />
+               </font>
+            </Button>
+            <Button layoutX="22.0" layoutY="508.0" mnemonicParsing="false" onAction="#makeReservationFormOnAction" prefHeight="60.0" prefWidth="307.0" style="-fx-background-color: white; -fx-border-radius: 20; -fx-border-color: black; -fx-background-radius: 20;" text="Make Reservation">
+               <font>
+                  <Font name="Arial Bold" size="28.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="76.0" fitWidth="81.0" layoutX="24.0" layoutY="24.0" onMouseClicked="#backToHomeOnAction" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@assests/images/home-icon.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="childFormContext" layoutX="349.0" prefHeight="802.0" prefWidth="848.0" style="-fx-background-color: white;">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="800.0" layoutY="2.0" stroke="WHITE" strokeType="INSIDE" width="848.0">
+               <fill>
+                  <LinearGradient endX="0.7961165048543689" endY="1.0" startX="0.6990291262135923" startY="0.6941747572815533">
+                     <stops>
+                        <Stop color="WHITE" />
+                        <Stop color="#5cf9ff" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </fill>
+            </Rectangle>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>
