@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="800.0" prefWidth="848.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Hostel_Management_System.controller.ManageStudentsFormController">
+<AnchorPane prefHeight="800.0" prefWidth="848.0" stylesheets="@assests/styles/manageStudentsForm.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Hostel_Management_System.controller.ManageStudentsFormController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="800.0" layoutX="5.0" stroke="WHITE" strokeType="INSIDE" width="848.0">
          <fill>
