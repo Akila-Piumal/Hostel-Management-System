@@ -12,4 +12,8 @@ public interface ManageStudentsBO extends SuperBO {
     boolean deleteStudent(String studentId);
 
     boolean checkStudentIsExists(String id);
+
+    boolean saveStudent(StudentDTO dto);
+
+    boolean updateStudent(StudentDTO dto);
 }

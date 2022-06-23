@@ -18,6 +18,7 @@ import lk.ijse.Hostel_Management_System.dto.StudentDTO;
 import lk.ijse.Hostel_Management_System.util.AnimationUtil;
 import lk.ijse.Hostel_Management_System.view.tdm.StudentTM;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -128,6 +129,30 @@ public class ManageStudentsFormController {
     }
 
     public void btnSaveStudentOnAction(ActionEvent actionEvent) {
+        if(btnSave.getText().equalsIgnoreCase("Save")){
+            if (existStudent(txtStudentId.getText())){
+                new Alert(Alert.AlertType.WARNING,"Student Already Exists").show();
+            }
+            manageStudentsBO.saveStudent(new StudentDTO(txtStudentId.getText(),txtName.getText(),txtAddress.getText(),txtContactNo.getText(), LocalDate.parse(txtDob.getText()),cmbGender.getValue()));
+            tblStudentDetails.getItems().add(new StudentTM(txtStudentId.getText(),txtName.getText(),txtAddress.getText(),txtContactNo.getText(),LocalDate.parse(txtDob.getText()),cmbGender.getValue()));
+        }else{
+            if(!existStudent(txtStudentId.getText())){
+                new Alert(Alert.AlertType.ERROR,"Student Not Exists").show();
+            }
+            manageStudentsBO.updateStudent(new StudentDTO(txtStudentId.getText(),txtName.getText(),txtAddress.getText(),txtContactNo.getText(),LocalDate.parse(txtDob.getText()),cmbGender.getValue()));
+            new Alert(Alert.AlertType.CONFIRMATION,"Updated..!").show();
 
+            StudentTM selectedItem = tblStudentDetails.getSelectionModel().getSelectedItem();
+            selectedItem.setStudentId(txtStudentId.getText());
+            selectedItem.setName(txtName.getText());
+            selectedItem.setAddress(txtAddress.getText());
+            selectedItem.setContactNo(txtContactNo.getText());
+            selectedItem.setDob(LocalDate.parse(txtDob.getText()));
+            selectedItem.setGender(cmbGender.getValue());
+            tblStudentDetails.refresh();
+
+            clearFields();
+            tblStudentDetails.getSelectionModel().clearSelection();
+        }
     }
 }

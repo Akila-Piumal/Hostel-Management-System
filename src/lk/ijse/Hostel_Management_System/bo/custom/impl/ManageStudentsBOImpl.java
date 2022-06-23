@@ -6,6 +6,7 @@ import lk.ijse.Hostel_Management_System.dao.custom.StudentDAO;
 import lk.ijse.Hostel_Management_System.dto.StudentDTO;
 import lk.ijse.Hostel_Management_System.entity.Student;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +33,16 @@ public class ManageStudentsBOImpl implements ManageStudentsBO {
     @Override
     public boolean checkStudentIsExists(String id) {
         return studentDAO.exist(id);
+    }
+
+    @Override
+    public boolean saveStudent(StudentDTO dto) {
+        return studentDAO.save(new Student(dto.getStudentId(), dto.getName(), dto.getAddress(), dto.getContactNo(), dto.getDob(), dto.getGender()));
+    }
+
+    @Override
+    public boolean updateStudent(StudentDTO dto) {
+        return studentDAO.update(new Student(dto.getStudentId(), dto.getName(), dto.getAddress(), dto.getContactNo(), dto.getDob(), dto.getGender()));
     }
 
 }

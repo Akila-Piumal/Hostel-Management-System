@@ -27,12 +27,28 @@ public class StudentDAOImpl implements StudentDAO {
 
     @Override
     public boolean save(Student entity) {
-        return false;
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        session.save(entity);
+
+        transaction.commit();
+        session.close();
+
+        return true;
     }
 
     @Override
     public boolean update(Student entity) {
-        return false;
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        session.update(entity);
+
+        transaction.commit();
+        session.close();
+
+        return true;
     }
 
     @Override
