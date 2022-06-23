@@ -54,7 +54,7 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="childFormContext" layoutX="349.0" prefHeight="802.0" prefWidth="848.0" style="-fx-background-color: white;">
+      <AnchorPane fx:id="childFormContext" layoutX="349.0" prefHeight="800.0" prefWidth="848.0" style="-fx-background-color: white;">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" height="800.0" layoutY="2.0" stroke="WHITE" strokeType="INSIDE" width="848.0">
                <fill>

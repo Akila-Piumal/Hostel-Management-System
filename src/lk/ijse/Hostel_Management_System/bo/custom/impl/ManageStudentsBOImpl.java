@@ -23,4 +23,15 @@ public class ManageStudentsBOImpl implements ManageStudentsBO {
         }
         return studentDTOList;
     }
+
+    @Override
+    public boolean deleteStudent(String studentId) {
+        return studentDAO.delete(studentId);
+    }
+
+    @Override
+    public boolean checkStudentIsExists(String id) {
+        return studentDAO.exist(id);
+    }
+
 }

@@ -13,8 +13,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="800.0" prefWidth="848.0" stylesheets="@assests/styles/manageStudentsForm.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Hostel_Management_System.controller.ManageStudentsFormController">
+<AnchorPane fx:id="manageStudentsFormContext" prefHeight="800.0" prefWidth="848.0" stylesheets="@assests/styles/manageStudentsForm.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Hostel_Management_System.controller.ManageStudentsFormController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="800.0" layoutX="5.0" stroke="WHITE" strokeType="INSIDE" width="848.0">
          <fill>
@@ -26,9 +25,9 @@
             </LinearGradient>
          </fill>
       </Rectangle>
-      <Label layoutX="284.0" layoutY="14.0" text="Manage Students" underline="true">
+      <Label layoutX="263.0" layoutY="14.0" text="Manage Students" underline="true">
          <font>
-            <Font name="System Bold Italic" size="36.0" />
+            <Font name="System Bold Italic" size="41.0" />
          </font>
          <textFill>
             <LinearGradient endX="0.4563106796116505" endY="0.21359223300970875">
@@ -39,13 +38,13 @@
             </LinearGradient>
          </textFill>
       </Label>
-      <JFXTextField fx:id="txtStudentId" layoutX="23.0" layoutY="108.0" prefHeight="31.0" prefWidth="102.0" promptText="Student Id" />
-      <JFXTextField fx:id="txtName" layoutX="141.0" layoutY="108.0" prefHeight="31.0" prefWidth="150.0" promptText="Name" />
-      <JFXTextField fx:id="txtAddress" layoutX="309.0" layoutY="108.0" prefHeight="31.0" prefWidth="164.0" promptText="Address" />
-      <JFXTextField fx:id="txtContactNo" layoutX="488.0" layoutY="108.0" prefHeight="31.0" prefWidth="122.0" promptText="Con. No" />
-      <JFXTextField fx:id="txtDob" layoutX="624.0" layoutY="108.0" prefHeight="31.0" prefWidth="111.0" promptText="dob" />
-      <JFXComboBox fx:id="cmbGender" layoutX="749.0" layoutY="108.0" prefHeight="31.0" prefWidth="93.0" promptText="Gender" />
-      <JFXButton fx:id="btnAdd" buttonType="RAISED" layoutX="369.0" layoutY="166.0" onAction="#btnAddStudentOnAction" prefHeight="48.0" prefWidth="111.0" style="-fx-background-color: #55E6C1; -fx-background-radius: 8;" text="Add" textFill="WHITE">
+      <JFXTextField fx:id="txtStudentId" layoutX="23.0" layoutY="168.0" prefHeight="31.0" prefWidth="84.0" promptText="Student Id" />
+      <JFXTextField fx:id="txtName" layoutX="127.0" layoutY="168.0" prefHeight="31.0" prefWidth="136.0" promptText="Name" />
+      <JFXTextField fx:id="txtAddress" layoutX="286.0" layoutY="168.0" prefHeight="31.0" prefWidth="170.0" promptText="Address" />
+      <JFXTextField fx:id="txtContactNo" layoutX="474.0" layoutY="168.0" prefHeight="31.0" prefWidth="118.0" promptText="Con. No" />
+      <JFXTextField fx:id="txtDob" layoutX="609.0" layoutY="168.0" prefHeight="31.0" prefWidth="111.0" promptText="dob" />
+      <JFXComboBox fx:id="cmbGender" layoutX="737.0" layoutY="168.0" prefHeight="31.0" prefWidth="105.0" promptText="Gender" />
+      <JFXButton fx:id="btnSave" buttonType="RAISED" layoutX="243.0" layoutY="236.0" onAction="#btnSaveStudentOnAction" prefHeight="48.0" prefWidth="111.0" style="-fx-background-color: #55E6C1; -fx-background-radius: 8;" text="Save" textFill="WHITE">
          <font>
             <Font name="System Bold" size="22.0" />
          </font>
@@ -53,16 +52,31 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <TableView fx:id="tblStudentDetails" layoutX="33.0" layoutY="266.0" prefHeight="453.0" prefWidth="797.0">
+      <TableView fx:id="tblStudentDetails" layoutX="28.0" layoutY="329.0" prefHeight="420.0" prefWidth="797.0">
          <columns>
-            <TableColumn prefWidth="79.0" text="Id" />
-            <TableColumn minWidth="8.0" prefWidth="139.0" text="Name" />
-            <TableColumn prefWidth="162.0" text="Address" />
-            <TableColumn prefWidth="114.0" text="Contact No" />
-            <TableColumn prefWidth="96.0" text="DOB" />
-            <TableColumn prefWidth="95.0" text="Gender" />
-            <TableColumn prefWidth="111.0" text="Option" />
+            <TableColumn prefWidth="91.0" text="Id" />
+            <TableColumn minWidth="8.0" prefWidth="140.0" text="Name" />
+            <TableColumn prefWidth="185.0" text="Address" />
+            <TableColumn prefWidth="150.0" text="Contact No" />
+            <TableColumn prefWidth="122.0" text="DOB" />
+            <TableColumn prefWidth="108.0" text="Gender" />
          </columns>
       </TableView>
+      <JFXButton fx:id="btnDelete" buttonType="RAISED" layoutX="411.0" layoutY="236.0" onAction="#btnDeleteStudentOnAction" prefHeight="48.0" prefWidth="111.0" style="-fx-background-color: #55E6C1; -fx-background-radius: 8;" text="Delete" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton fx:id="btnAddStudent" buttonType="RAISED" layoutX="652.0" layoutY="84.0" onAction="#btnAddNewStudentOnAction" prefHeight="31.0" prefWidth="170.0" style="-fx-background-color: #55E6C1; -fx-background-radius: 8;" text="+ New Student" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
    </children>
 </AnchorPane>

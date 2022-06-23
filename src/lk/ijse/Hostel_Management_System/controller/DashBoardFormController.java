@@ -5,12 +5,17 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.Hostel_Management_System.util.AnimationUtil;
 
 import java.io.IOException;
 
 public class DashBoardFormController {
     public AnchorPane dashBoardFormContext;
     public AnchorPane childFormContext;
+
+    public void initialize(){
+        AnimationUtil.windowAnimation(dashBoardFormContext);
+    }
 
     public void backToHomeOnAction(MouseEvent mouseEvent) {
 

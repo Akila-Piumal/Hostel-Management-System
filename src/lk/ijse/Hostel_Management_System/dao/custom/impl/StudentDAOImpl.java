@@ -6,6 +6,7 @@ import lk.ijse.Hostel_Management_System.util.FactoryConfiguration;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import java.util.List;
 
@@ -35,13 +36,37 @@ public class StudentDAOImpl implements StudentDAO {
     }
 
     @Override
-    public boolean delete(String s) {
-        return false;
+    public boolean delete(String id) {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        Student student = session.load(Student.class, id);
+
+        session.delete(student);
+
+        transaction.commit();
+        session.close();
+
+        return true;
     }
 
     @Override
-    public boolean exist(String s) {
-        return false;
+    public boolean exist(String id) {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        String hql="From Student WHERE studentId= :student_Id";
+        Query query = session.createQuery(hql);
+        query.setParameter("student_Id",id);
+        List<Student> studentList = query.list();
+
+        transaction.commit();
+        session.close();
+
+        if (studentList.isEmpty()){
+            return false;
+        }
+        return true;
     }
 
     @Override
