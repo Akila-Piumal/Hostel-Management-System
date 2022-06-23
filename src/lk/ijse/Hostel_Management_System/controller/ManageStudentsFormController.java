@@ -125,7 +125,23 @@ public class ManageStudentsFormController {
     }
 
     public void btnAddNewStudentOnAction(ActionEvent actionEvent) {
-
+        txtStudentId.setDisable(false);
+        txtName.setDisable(false);
+        txtAddress.setDisable(false);
+        txtContactNo.setDisable(false);
+        txtDob.setDisable(false);
+        cmbGender.setDisable(false);
+        txtStudentId.clear();
+        txtName.clear();
+        txtAddress.clear();
+        txtContactNo.clear();
+        txtDob.clear();
+        cmbGender.getSelectionModel().clearSelection();
+        tblStudentDetails.getSelectionModel().clearSelection();
+        btnDelete.setDisable(true);
+        btnSave.setDisable(false);
+        btnSave.setText("Save");
+        txtStudentId.requestFocus();
     }
 
     public void btnSaveStudentOnAction(ActionEvent actionEvent) {
@@ -135,6 +151,7 @@ public class ManageStudentsFormController {
             }
             manageStudentsBO.saveStudent(new StudentDTO(txtStudentId.getText(),txtName.getText(),txtAddress.getText(),txtContactNo.getText(), LocalDate.parse(txtDob.getText()),cmbGender.getValue()));
             tblStudentDetails.getItems().add(new StudentTM(txtStudentId.getText(),txtName.getText(),txtAddress.getText(),txtContactNo.getText(),LocalDate.parse(txtDob.getText()),cmbGender.getValue()));
+            new Alert(Alert.AlertType.CONFIRMATION,"Saved..!").show();
         }else{
             if(!existStudent(txtStudentId.getText())){
                 new Alert(Alert.AlertType.ERROR,"Student Not Exists").show();
