@@ -25,8 +25,8 @@ public class DashBoardFormController {
         setUi("manageStudents");
     }
 
-    public void manageRoomsFormOnAction(ActionEvent actionEvent) {
-
+    public void manageRoomsFormOnAction(ActionEvent actionEvent) throws IOException {
+        setUi("manageRoms");
     }
 
     public void reservationDetailsFormOnAction(ActionEvent actionEvent) {

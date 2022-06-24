@@ -12,4 +12,9 @@ public class RoomDTO {
     private String type;
     private String keyMoney;
     private int qty;
+
+    @Override
+    public String toString() {
+        return roomTypeId;
+    }
 }
