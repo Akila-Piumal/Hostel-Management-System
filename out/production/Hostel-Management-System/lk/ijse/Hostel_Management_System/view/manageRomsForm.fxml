@@ -13,8 +13,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="800.0" prefWidth="848.0" stylesheets="@assests/styles/manageStudentsForm.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Hostel_Management_System.controller.ManageRomsFormController">
+<AnchorPane fx:id="manageRoomsFormContext" prefHeight="800.0" prefWidth="848.0" stylesheets="@assests/styles/manageStudentsForm.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Hostel_Management_System.controller.ManageRomsFormController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="800.0" layoutX="8.0" stroke="WHITE" strokeType="INSIDE" width="848.0">
          <fill>
@@ -48,9 +47,9 @@
          </cursor>
       </JFXButton>
       <JFXComboBox fx:id="cmbRoomTypeID" layoutX="31.0" layoutY="168.0" prefHeight="31.0" prefWidth="136.0" promptText="Room Type ID" />
-      <JFXTextField fx:id="txtType" layoutX="204.0" layoutY="168.0" prefHeight="31.0" prefWidth="170.0" promptText="Type" />
-      <JFXTextField fx:id="txtKeyMoney" layoutX="402.0" layoutY="168.0" prefHeight="31.0" prefWidth="170.0" promptText="Key Money" />
-      <JFXTextField fx:id="txtQty" layoutX="584.0" layoutY="168.0" prefHeight="31.0" prefWidth="170.0" promptText="Qty" />
+      <JFXTextField fx:id="txtType" layoutX="215.0" layoutY="168.0" prefHeight="31.0" prefWidth="149.0" promptText="Type" />
+      <JFXTextField fx:id="txtKeyMoney" layoutX="421.0" layoutY="168.0" prefHeight="31.0" prefWidth="149.0" promptText="Key Money" />
+      <JFXTextField fx:id="txtQty" alignment="CENTER" layoutX="629.0" layoutY="168.0" prefHeight="31.0" prefWidth="97.0" promptText="Qty" />
       <JFXButton fx:id="btnSave" buttonType="RAISED" layoutX="253.0" layoutY="246.0" onAction="#btnSaveRoomOnAction" prefHeight="48.0" prefWidth="111.0" style="-fx-background-color: #55E6C1; -fx-background-radius: 8;" text="Save" textFill="WHITE">
          <font>
             <Font name="System Bold" size="22.0" />
