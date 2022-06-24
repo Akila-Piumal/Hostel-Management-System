@@ -1,6 +1,7 @@
 package lk.ijse.Hostel_Management_System.bo;
 
 import lk.ijse.Hostel_Management_System.bo.custom.impl.LoginBOImpl;
+import lk.ijse.Hostel_Management_System.bo.custom.impl.ManageRoomBOImpl;
 import lk.ijse.Hostel_Management_System.bo.custom.impl.ManageStudentsBOImpl;
 
 public class BOFactory {
@@ -20,12 +21,14 @@ public class BOFactory {
                 return new LoginBOImpl();
             case MANAGESTUDENTS:
                 return new ManageStudentsBOImpl();
+            case MANAGEROOMS:
+                return new ManageRoomBOImpl();
             default:
                 return null;
         }
     }
 
     public enum BOTypes {
-        LOGIN, MANAGESTUDENTS
+        LOGIN, MANAGESTUDENTS, MANAGEROOMS
     }
 }
