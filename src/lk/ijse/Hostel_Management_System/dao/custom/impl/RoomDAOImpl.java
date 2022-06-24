@@ -2,13 +2,27 @@ package lk.ijse.Hostel_Management_System.dao.custom.impl;
 
 import lk.ijse.Hostel_Management_System.dao.custom.RoomDAO;
 import lk.ijse.Hostel_Management_System.entity.Room;
+import lk.ijse.Hostel_Management_System.util.FactoryConfiguration;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import java.util.List;
 
 public class RoomDAOImpl implements RoomDAO {
     @Override
     public List<Room> getAll() {
-        return null;
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        String hql="FROM Room";
+        Query query = session.createQuery(hql);
+        List<Room> roomList = query.list();
+
+        transaction.commit();
+        session.close();
+
+        return roomList;
     }
 
     @Override
