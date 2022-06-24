@@ -18,12 +18,19 @@ public class ManageRomsFormController {
     public JFXButton btnDelete;
     public TableView<RoomTM> tblRoomDetails;
 
+    public void initialize(){
+
+    }
+
     public void btnNewRoomOnAction(ActionEvent actionEvent) {
+
     }
 
     public void btnSaveRoomOnAction(ActionEvent actionEvent) {
+
     }
 
     public void btnDeleteRoomOnAction(ActionEvent actionEvent) {
+
     }
 }
