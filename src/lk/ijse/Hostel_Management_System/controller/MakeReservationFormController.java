@@ -6,7 +6,11 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
+import lk.ijse.Hostel_Management_System.bo.BOFactory;
+import lk.ijse.Hostel_Management_System.bo.SuperBO;
+import lk.ijse.Hostel_Management_System.bo.custom.MakeReservationBO;
 import lk.ijse.Hostel_Management_System.dto.RoomDTO;
+import lk.ijse.Hostel_Management_System.dto.StudentDTO;
 import lk.ijse.Hostel_Management_System.view.tdm.ReservationTM;
 
 public class MakeReservationFormController {
@@ -29,8 +33,12 @@ public class MakeReservationFormController {
     public Label lblTotal;
     public JFXTextField txtPaidKeyMoney;
     public JFXButton btnReserve;
+    public JFXComboBox<StudentDTO> cmbStudentID;
+
+    MakeReservationBO makeReservationBO = (MakeReservationBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.MAKERESERVATION);
 
     public void initialize(){
+        txtStudentId.setVisible(false)
 
     }
 
