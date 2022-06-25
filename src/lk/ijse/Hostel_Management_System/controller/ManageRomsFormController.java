@@ -3,7 +3,9 @@ package lk.ijse.Hostel_Management_System.controller;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
@@ -27,6 +29,9 @@ public class ManageRomsFormController {
     public JFXButton btnDelete;
     public TableView<RoomTM> tblRoomDetails;
     public AnchorPane manageRoomsFormContext;
+    public JFXTextField txtQtyOnHand;
+    public JFXButton btnNewRoomType;
+    public JFXTextField txtRoomTypeID;
 
     ManageRoomBO manageRoomBO = (ManageRoomBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.MANAGEROOMS);
 
@@ -36,7 +41,6 @@ public class ManageRomsFormController {
         tblRoomDetails.getColumns().get(2).setCellValueFactory(new PropertyValueFactory("keyMoney"));
         tblRoomDetails.getColumns().get(3).setCellValueFactory(new PropertyValueFactory("qty"));
 
-
         AnimationUtil.windowAnimation(manageRoomsFormContext);
 
         List<RoomDTO> allRooms = manageRoomBO.getAllRooms();
@@ -44,16 +48,17 @@ public class ManageRomsFormController {
             cmbRoomTypeID.getItems().add(roomDTO);
         }
 
+        txtRoomTypeID.setVisible(false);
         clearFields();
 
         cmbRoomTypeID.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             txtType.setText(newValue.getType());
             txtKeyMoney.setText(newValue.getKeyMoney());
-            txtQty.setText(String.valueOf(newValue.getQty()));
+            txtQtyOnHand.setText(String.valueOf(newValue.getQty()));
+            txtQty.clear();
         });
 
         loadAllRoomDetails();
-
     }
 
     private void loadAllRoomDetails() {
@@ -66,9 +71,11 @@ public class ManageRomsFormController {
     private void clearFields() {
         cmbRoomTypeID.getSelectionModel().clearSelection();
         txtKeyMoney.clear();
+        txtQtyOnHand.clear();
         txtQty.clear();
         txtType.clear();
         txtKeyMoney.setDisable(true);
+        txtQtyOnHand.setDisable(true);
         txtType.setDisable(true);
         txtQty.setDisable(true);
         cmbRoomTypeID.setDisable(true);
@@ -77,14 +84,84 @@ public class ManageRomsFormController {
     }
 
     public void btnNewRoomOnAction(ActionEvent actionEvent) {
-
+        txtRoomTypeID.clear();
+        txtQty.clear();
+        txtKeyMoney.clear();
+        txtType.clear();
+        txtQtyOnHand.clear();
+        txtRoomTypeID.setVisible(false);
+        cmbRoomTypeID.setVisible(true);
+        cmbRoomTypeID.setDisable(false);
+        txtQty.setDisable(false);
+        txtType.setDisable(false);
+        txtQtyOnHand.setDisable(false);
+        txtKeyMoney.setDisable(false);
+        cmbRoomTypeID.requestFocus();
+        btnSave.setText("Add");
+        btnSave.setDisable(false);
+        btnDelete.setDisable(true);
+        txtType.setEditable(false);
+        txtKeyMoney.setEditable(false);
+        txtQtyOnHand.setEditable(false);
     }
 
     public void btnSaveRoomOnAction(ActionEvent actionEvent) {
-
+        if(btnSave.getText().equalsIgnoreCase("Add")){
+            ObservableList<RoomTM> items = tblRoomDetails.getItems();
+            for (RoomTM item : items) {
+                if (item.getRoomTypeId().equalsIgnoreCase(cmbRoomTypeID.getValue().getRoomTypeId())){
+                    int qty=item.getQty()+Integer.parseInt(txtQty.getText());
+                    if (manageRoomBO.updateQty(item.getRoomTypeId(), qty)) {
+                        new Alert(Alert.AlertType.CONFIRMATION,"Updated..!").show();
+                        item.setQty(qty);
+                        txtQtyOnHand.setText(String.valueOf(item.getQty()));
+                        txtQty.clear();
+                    }
+                }
+            }
+            tblRoomDetails.refresh();
+        }else if (btnSave.getText().equalsIgnoreCase("Save")){
+            if (manageRoomBO.saveRoom(new RoomDTO(txtRoomTypeID.getText(),txtType.getText(),txtKeyMoney.getText(),Integer.parseInt(txtQtyOnHand.getText())))) {
+                new Alert(Alert.AlertType.CONFIRMATION,"Saved..!").show();
+                tblRoomDetails.getItems().add(new RoomTM(txtRoomTypeID.getText(),txtType.getText(),txtKeyMoney.getText(),Integer.parseInt(txtQtyOnHand.getText())));
+                tblRoomDetails.refresh();
+                txtRoomTypeID.clear();
+                txtType.clear();
+                txtKeyMoney.clear();
+                txtQtyOnHand.clear();
+                btnSave.setDisable(true);
+                txtRoomTypeID.setVisible(false);
+                cmbRoomTypeID.setVisible(true);
+                txtType.setDisable(true);
+                txtKeyMoney.setDisable(true);
+                txtQtyOnHand.setDisable(true);
+            }
+        }
     }
 
     public void btnDeleteRoomOnAction(ActionEvent actionEvent) {
 
+    }
+
+    public void btnNewRoomTypeOnAction(ActionEvent actionEvent) {
+        cmbRoomTypeID.setVisible(false);
+        cmbRoomTypeID.setDisable(true);
+        txtRoomTypeID.setVisible(true);
+        txtRoomTypeID.clear();
+        txtType.setDisable(false);
+        txtKeyMoney.setDisable(false);
+        txtQtyOnHand.setDisable(false);
+        txtType.setEditable(true);
+        txtQtyOnHand.setEditable(true);
+        txtKeyMoney.setEditable(true);
+        txtType.clear();
+        txtQtyOnHand.clear();
+        txtQty.clear();
+        txtKeyMoney.clear();
+        txtQty.setDisable(true);
+        btnDelete.setDisable(true);
+        btnSave.setText("Save");
+        btnSave.setDisable(false);
+        txtRoomTypeID.requestFocus();
     }
 }

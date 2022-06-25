@@ -23,4 +23,14 @@ public class ManageRoomBOImpl implements ManageRoomBO {
         }
         return allRooms;
     }
+
+    @Override
+    public boolean updateQty(String roomTypeID, int qty) {
+        return roomDAO.updateQty(roomTypeID,qty);
+    }
+
+    @Override
+    public boolean saveRoom(RoomDTO roomDTO) {
+        return roomDAO.save(new Room(roomDTO.getRoomTypeId(),roomDTO.getType(),roomDTO.getKeyMoney(),roomDTO.getQty()));
+    }
 }

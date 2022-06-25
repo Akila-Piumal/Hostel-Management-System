@@ -27,7 +27,15 @@ public class RoomDAOImpl implements RoomDAO {
 
     @Override
     public boolean save(Room entity) {
-        return false;
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        session.save(entity);
+
+        transaction.commit();
+        session.close();
+
+        return true;
     }
 
     @Override
@@ -48,5 +56,25 @@ public class RoomDAOImpl implements RoomDAO {
     @Override
     public Room search(String s) {
         return null;
+    }
+
+    @Override
+    public boolean updateQty(String roomTypeID, int qty) {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        String hql="UPDATE Room SET qty=: qty_on_hand WHERE roomTypeId=: id";
+        Query query = session.createQuery(hql);
+        query.setParameter("qty_on_hand",qty);
+        query.setParameter("id",roomTypeID);
+        int i = query.executeUpdate();
+
+        transaction.commit();
+        session.close();
+
+        if (i>0){
+            return true;
+        }
+        return false;
     }
 }
