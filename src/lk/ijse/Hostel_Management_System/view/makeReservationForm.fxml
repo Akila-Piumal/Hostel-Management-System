@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="800.0" prefWidth="848.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Hostel_Management_System.controller.MakeReservationFormController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="800.0" layoutX="8.0" layoutY="5.0" stroke="WHITE" strokeType="INSIDE" width="848.0">
+         <fill>
+            <LinearGradient endX="0.7961165048543689" endY="1.0" startX="0.6990291262135923" startY="0.6941747572815533">
+               <stops>
+                  <Stop color="WHITE" />
+                  <Stop color="#5cf9ff" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Rectangle>
+      <Label layoutX="54.0" layoutY="21.0" text="Make Reservation" underline="true">
+         <font>
+            <Font name="System Bold Italic" size="41.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="0.4563106796116505" endY="0.21359223300970875">
+               <stops>
+                  <Stop color="BLACK" />
+                  <Stop color="#2a8ac6" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+      <Label fx:id="lblReservationID" alignment="CENTER" layoutX="705.0" layoutY="24.0" prefHeight="50.0" prefWidth="123.0" style="-fx-border-radius: 6; -fx-border-color: black;" textFill="WHITE">
+         <font>
+            <Font name="Arial Narrow Bold" size="32.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblDate" layoutX="534.0" layoutY="21.0" prefHeight="39.0" prefWidth="150.0" textFill="#192a56">
+         <font>
+            <Font name="System Bold" size="27.0" />
+         </font>
+      </Label>
+      <JFXTextField fx:id="txtStudentId" layoutX="18.0" layoutY="163.0" prefHeight="31.0" prefWidth="84.0" promptText="Student Id" />
+      <JFXTextField fx:id="txtName" layoutX="122.0" layoutY="163.0" prefHeight="31.0" prefWidth="136.0" promptText="Name" />
+      <JFXTextField fx:id="txtAddress" layoutX="281.0" layoutY="163.0" prefHeight="31.0" prefWidth="170.0" promptText="Address" />
+      <JFXTextField fx:id="txtContactNo" layoutX="469.0" layoutY="163.0" prefHeight="31.0" prefWidth="118.0" promptText="Con. No" />
+      <JFXTextField fx:id="txtDob" layoutX="604.0" layoutY="163.0" prefHeight="31.0" prefWidth="111.0" promptText="dob" />
+      <JFXComboBox fx:id="cmbGender" layoutX="732.0" layoutY="163.0" prefHeight="31.0" prefWidth="105.0" promptText="Gender" />
+      <JFXButton fx:id="btnNewStudent" buttonType="RAISED" layoutX="671.0" layoutY="98.0" onAction="#btnNewStudentOnAction" prefHeight="42.0" prefWidth="157.0" style="-fx-background-color: #badc58;" text="+New Student" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXComboBox fx:id="cmbRoomTypeID" labelFloat="true" layoutX="16.0" layoutY="226.0" prefHeight="31.0" prefWidth="136.0" promptText="Room Type ID" />
+      <JFXTextField fx:id="txtType" labelFloat="true" layoutX="171.0" layoutY="226.0" prefHeight="31.0" prefWidth="123.0" promptText="Type" />
+      <JFXTextField fx:id="txtKeyMoney" labelFloat="true" layoutX="309.0" layoutY="226.0" prefHeight="31.0" prefWidth="149.0" promptText="Key Money For Room" />
+      <JFXTextField fx:id="txtQtyOnHand" labelFloat="true" layoutX="491.0" layoutY="226.0" prefHeight="31.0" prefWidth="118.0" promptText="Qty On Hand" />
+      <JFXTextField fx:id="txtQty" labelFloat="true" layoutX="633.0" layoutY="226.0" prefHeight="31.0" prefWidth="76.0" promptText="Qty" />
+      <JFXButton fx:id="btnAddToList" buttonType="RAISED" layoutX="726.0" layoutY="222.0" onAction="#btnAddToListOnAction" prefHeight="31.0" prefWidth="118.0" style="-fx-background-color: #12CBC4;" text="Add to List" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <TableView fx:id="tblReservationDetails" layoutX="18.0" layoutY="295.0" prefHeight="360.0" prefWidth="820.0">
+         <columns>
+            <TableColumn prefWidth="129.0" text="Room Type ID" />
+            <TableColumn minWidth="8.0" prefWidth="128.0" text="Type" />
+            <TableColumn prefWidth="136.0" text="Key Money" />
+            <TableColumn prefWidth="115.0" text="QtyOnHand" />
+            <TableColumn prefWidth="91.0" text="Qty" />
+            <TableColumn prefWidth="118.0" text="Total" />
+            <TableColumn prefWidth="102.0" text="Remove" />
+         </columns>
+      </TableView>
+      <Label layoutX="256.0" layoutY="694.0" prefHeight="39.0" prefWidth="76.0" text="Total">
+         <font>
+            <Font name="System Bold" size="27.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblTotal" alignment="CENTER" layoutX="336.0" layoutY="695.0" prefHeight="17.0" prefWidth="123.0" style="-fx-border-radius: 6; -fx-border-color: black;">
+         <font>
+            <Font name="System Bold" size="23.0" />
+         </font>
+      </Label>
+      <JFXTextField fx:id="txtPaidKeyMoney" labelFloat="true" layoutX="492.0" layoutY="687.0" prefHeight="31.0" prefWidth="170.0" promptText="Paid Key Money">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </JFXTextField>
+      <JFXButton fx:id="btnReserve" buttonType="RAISED" layoutX="711.0" layoutY="684.0" onAction="#btnReserveOnAction" style="-fx-background-color: #ff7979; -fx-background-radius: 8;" text="Reserve" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+   </children>
+</AnchorPane>
