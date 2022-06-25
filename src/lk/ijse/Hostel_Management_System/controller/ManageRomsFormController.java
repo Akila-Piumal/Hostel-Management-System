@@ -58,6 +58,22 @@ public class ManageRomsFormController {
             txtQty.clear();
         });
 
+        tblRoomDetails.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            txtRoomTypeID.setVisible(false);
+            cmbRoomTypeID.setVisible(true);
+            cmbRoomTypeID.setDisable(true);
+            txtQty.setDisable(true);
+            btnSave.setText("Update");
+            btnSave.setDisable(false);
+            btnDelete.setDisable(false);
+            cmbRoomTypeID.getSelectionModel().select(new RoomDTO(newValue.getRoomTypeId(),newValue.getType(),newValue.getKeyMoney(),newValue.getQty()));
+            txtType.setDisable(false);
+            txtQtyOnHand.setDisable(false);
+            txtKeyMoney.setDisable(false);
+            txtKeyMoney.setEditable(true);
+            txtQtyOnHand.setEditable(true);
+        });
+
         loadAllRoomDetails();
     }
 
