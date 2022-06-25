@@ -33,8 +33,8 @@ public class DashBoardFormController {
 
     }
 
-    public void makeReservationFormOnAction(ActionEvent actionEvent) {
-
+    public void makeReservationFormOnAction(ActionEvent actionEvent) throws IOException {
+        setUi("makeReservation");
     }
 
     public void setUi(String URI) throws IOException {

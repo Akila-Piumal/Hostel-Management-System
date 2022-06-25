@@ -16,4 +16,9 @@ public class StudentDTO {
     private String contactNo;
     private LocalDate dob;
     private String gender;
+
+    @Override
+    public String toString() {
+        return studentId;
+    }
 }
