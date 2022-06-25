@@ -40,7 +40,15 @@ public class RoomDAOImpl implements RoomDAO {
 
     @Override
     public boolean update(Room entity) {
-        return false;
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        session.update(entity);
+
+        transaction.commit();
+        session.close();
+
+        return true;
     }
 
     @Override

@@ -152,6 +152,15 @@ public class ManageRomsFormController {
                 txtKeyMoney.setDisable(true);
                 txtQtyOnHand.setDisable(true);
             }
+        }else if (btnSave.getText().equalsIgnoreCase("Update")){
+            if (manageRoomBO.updateRoom(new RoomDTO(cmbRoomTypeID.getValue().getRoomTypeId(), txtType.getText(), txtKeyMoney.getText(), Integer.parseInt(txtQtyOnHand.getText())))) {
+                new Alert(Alert.AlertType.CONFIRMATION,"Updated..!").show();
+                RoomTM selectedItem = tblRoomDetails.getSelectionModel().getSelectedItem();
+                selectedItem.setKeyMoney(txtKeyMoney.getText());
+                selectedItem.setQty(Integer.parseInt(txtQtyOnHand.getText()));
+                selectedItem.setType(txtType.getText());
+                tblRoomDetails.refresh();
+            }
         }
     }
 

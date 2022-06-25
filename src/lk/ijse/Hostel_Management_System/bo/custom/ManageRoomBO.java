@@ -11,4 +11,6 @@ public interface ManageRoomBO extends SuperBO {
     boolean updateQty(String roomTypeID, int qty);
 
     boolean saveRoom(RoomDTO roomDTO);
+
+    boolean updateRoom(RoomDTO roomDTO);
 }
