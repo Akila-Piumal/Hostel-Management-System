@@ -10,6 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
@@ -84,5 +85,6 @@
          </cursor>
       </JFXButton>
       <JFXTextField fx:id="txtRoomTypeID" labelFloat="true" layoutX="31.0" layoutY="168.0" prefHeight="31.0" prefWidth="136.0" promptText="Room  Type ID" />
+      <Line endX="725.0" layoutX="115.0" layoutY="92.0" startX="-100.0" />
    </children>
 </AnchorPane>

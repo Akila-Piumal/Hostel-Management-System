@@ -52,8 +52,18 @@ public class RoomDAOImpl implements RoomDAO {
     }
 
     @Override
-    public boolean delete(String s) {
-        return false;
+    public boolean delete(String id) {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        Room room = session.load(Room.class, id);
+
+        session.delete(room);
+
+        transaction.commit();
+        session.close();
+
+        return true;
     }
 
     @Override

@@ -6,18 +6,18 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.Hostel_Management_System.bo.BOFactory;
-import lk.ijse.Hostel_Management_System.bo.SuperBO;
 import lk.ijse.Hostel_Management_System.bo.custom.ManageRoomBO;
 import lk.ijse.Hostel_Management_System.dto.RoomDTO;
-import lk.ijse.Hostel_Management_System.entity.Room;
 import lk.ijse.Hostel_Management_System.util.AnimationUtil;
 import lk.ijse.Hostel_Management_System.view.tdm.RoomTM;
 
 import java.util.List;
+import java.util.Optional;
 
 public class ManageRomsFormController {
     public JFXButton btnNewRoom;
@@ -35,7 +35,7 @@ public class ManageRomsFormController {
 
     ManageRoomBO manageRoomBO = (ManageRoomBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.MANAGEROOMS);
 
-    public void initialize(){
+    public void initialize() {
         tblRoomDetails.getColumns().get(0).setCellValueFactory(new PropertyValueFactory("roomTypeId"));
         tblRoomDetails.getColumns().get(1).setCellValueFactory(new PropertyValueFactory("type"));
         tblRoomDetails.getColumns().get(2).setCellValueFactory(new PropertyValueFactory("keyMoney"));
@@ -66,7 +66,7 @@ public class ManageRomsFormController {
             btnSave.setText("Update");
             btnSave.setDisable(false);
             btnDelete.setDisable(false);
-            cmbRoomTypeID.getSelectionModel().select(new RoomDTO(newValue.getRoomTypeId(),newValue.getType(),newValue.getKeyMoney(),newValue.getQty()));
+            cmbRoomTypeID.getSelectionModel().select(new RoomDTO(newValue.getRoomTypeId(), newValue.getType(), newValue.getKeyMoney(), newValue.getQty()));
             txtType.setDisable(false);
             txtQtyOnHand.setDisable(false);
             txtKeyMoney.setDisable(false);
@@ -80,7 +80,7 @@ public class ManageRomsFormController {
     private void loadAllRoomDetails() {
         List<RoomDTO> allRooms = manageRoomBO.getAllRooms();
         for (RoomDTO roomDTO : allRooms) {
-            tblRoomDetails.getItems().add(new RoomTM(roomDTO.getRoomTypeId(),roomDTO.getType(),roomDTO.getKeyMoney(),roomDTO.getQty()));
+            tblRoomDetails.getItems().add(new RoomTM(roomDTO.getRoomTypeId(), roomDTO.getType(), roomDTO.getKeyMoney(), roomDTO.getQty()));
         }
     }
 
@@ -122,13 +122,13 @@ public class ManageRomsFormController {
     }
 
     public void btnSaveRoomOnAction(ActionEvent actionEvent) {
-        if(btnSave.getText().equalsIgnoreCase("Add")){
+        if (btnSave.getText().equalsIgnoreCase("Add")) {
             ObservableList<RoomTM> items = tblRoomDetails.getItems();
             for (RoomTM item : items) {
-                if (item.getRoomTypeId().equalsIgnoreCase(cmbRoomTypeID.getValue().getRoomTypeId())){
-                    int qty=item.getQty()+Integer.parseInt(txtQty.getText());
+                if (item.getRoomTypeId().equalsIgnoreCase(cmbRoomTypeID.getValue().getRoomTypeId())) {
+                    int qty = item.getQty() + Integer.parseInt(txtQty.getText());
                     if (manageRoomBO.updateQty(item.getRoomTypeId(), qty)) {
-                        new Alert(Alert.AlertType.CONFIRMATION,"Updated..!").show();
+                        new Alert(Alert.AlertType.CONFIRMATION, "Updated..!").show();
                         item.setQty(qty);
                         txtQtyOnHand.setText(String.valueOf(item.getQty()));
                         txtQty.clear();
@@ -136,10 +136,10 @@ public class ManageRomsFormController {
                 }
             }
             tblRoomDetails.refresh();
-        }else if (btnSave.getText().equalsIgnoreCase("Save")){
-            if (manageRoomBO.saveRoom(new RoomDTO(txtRoomTypeID.getText(),txtType.getText(),txtKeyMoney.getText(),Integer.parseInt(txtQtyOnHand.getText())))) {
-                new Alert(Alert.AlertType.CONFIRMATION,"Saved..!").show();
-                tblRoomDetails.getItems().add(new RoomTM(txtRoomTypeID.getText(),txtType.getText(),txtKeyMoney.getText(),Integer.parseInt(txtQtyOnHand.getText())));
+        } else if (btnSave.getText().equalsIgnoreCase("Save")) {
+            if (manageRoomBO.saveRoom(new RoomDTO(txtRoomTypeID.getText(), txtType.getText(), txtKeyMoney.getText(), Integer.parseInt(txtQtyOnHand.getText())))) {
+                new Alert(Alert.AlertType.CONFIRMATION, "Saved..!").show();
+                tblRoomDetails.getItems().add(new RoomTM(txtRoomTypeID.getText(), txtType.getText(), txtKeyMoney.getText(), Integer.parseInt(txtQtyOnHand.getText())));
                 tblRoomDetails.refresh();
                 txtRoomTypeID.clear();
                 txtType.clear();
@@ -152,9 +152,9 @@ public class ManageRomsFormController {
                 txtKeyMoney.setDisable(true);
                 txtQtyOnHand.setDisable(true);
             }
-        }else if (btnSave.getText().equalsIgnoreCase("Update")){
+        } else if (btnSave.getText().equalsIgnoreCase("Update")) {
             if (manageRoomBO.updateRoom(new RoomDTO(cmbRoomTypeID.getValue().getRoomTypeId(), txtType.getText(), txtKeyMoney.getText(), Integer.parseInt(txtQtyOnHand.getText())))) {
-                new Alert(Alert.AlertType.CONFIRMATION,"Updated..!").show();
+                new Alert(Alert.AlertType.CONFIRMATION, "Updated..!").show();
                 RoomTM selectedItem = tblRoomDetails.getSelectionModel().getSelectedItem();
                 selectedItem.setKeyMoney(txtKeyMoney.getText());
                 selectedItem.setQty(Integer.parseInt(txtQtyOnHand.getText()));
@@ -165,7 +165,14 @@ public class ManageRomsFormController {
     }
 
     public void btnDeleteRoomOnAction(ActionEvent actionEvent) {
-
+        Alert alert=new Alert(Alert.AlertType.WARNING,"Are You Sure..?", ButtonType.YES,ButtonType.NO);
+        Optional<ButtonType> buttonType = alert.showAndWait();
+        if (buttonType.get().equals(ButtonType.YES)){
+            if (manageRoomBO.deleteRoom(cmbRoomTypeID.getValue().getRoomTypeId())) {
+                new Alert(Alert.AlertType.CONFIRMATION, "Deleted..!!").show();
+                tblRoomDetails.getItems().remove(new RoomTM(cmbRoomTypeID.getValue().getRoomTypeId(),txtType.getText(),txtKeyMoney.getText(),Integer.parseInt(txtQtyOnHand.getText())));
+            }
+        }
     }
 
     public void btnNewRoomTypeOnAction(ActionEvent actionEvent) {

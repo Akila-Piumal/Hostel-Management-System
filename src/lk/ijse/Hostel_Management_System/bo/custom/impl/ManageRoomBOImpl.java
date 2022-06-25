@@ -38,4 +38,9 @@ public class ManageRoomBOImpl implements ManageRoomBO {
     public boolean updateRoom(RoomDTO roomDTO) {
         return roomDAO.update(new Room(roomDTO.getRoomTypeId(),roomDTO.getType(),roomDTO.getKeyMoney(),roomDTO.getQty()));
     }
+
+    @Override
+    public boolean deleteRoom(String id) {
+        return roomDAO.delete(id);
+    }
 }
