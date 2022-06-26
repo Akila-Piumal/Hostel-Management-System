@@ -70,7 +70,7 @@ public class MakeReservationFormController {
                     btnNewStudent.setDisable(false);
                     cmbStudentID.setDisable(false);
                 }
-//                calculateTotal();
+                calculateTotal();
             });
             return new ReadOnlyObjectWrapper<>(btnRemove);
         });
@@ -259,9 +259,19 @@ public class MakeReservationFormController {
         cmbStudentID.setDisable(true);
         cmbRoomTypeID.getSelectionModel().clearSelection();
         btnAddToList.setDisable(true);
+        calculateTotal();
     }
 
     public void btnReserveOnAction(ActionEvent actionEvent) {
 
+    }
+
+    public void calculateTotal(){
+        ObservableList<ReservationTM> items = tblReservationDetails.getItems();
+        double total = 0;
+        for (ReservationTM item : items) {
+            total+=item.getTotal();
+        }
+        lblTotal.setText(String.valueOf(total));
     }
 }
