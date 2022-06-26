@@ -3,9 +3,11 @@ package lk.ijse.Hostel_Management_System.controller;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
+import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.Hostel_Management_System.bo.BOFactory;
 import lk.ijse.Hostel_Management_System.bo.SuperBO;
@@ -15,6 +17,7 @@ import lk.ijse.Hostel_Management_System.dto.StudentDTO;
 import lk.ijse.Hostel_Management_System.util.AnimationUtil;
 import lk.ijse.Hostel_Management_System.view.tdm.ReservationTM;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class MakeReservationFormController {
@@ -43,6 +46,25 @@ public class MakeReservationFormController {
     MakeReservationBO makeReservationBO = (MakeReservationBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.MAKERESERVATION);
 
     public void initialize(){
+        tblReservationDetails.getColumns().get(0).setCellValueFactory(new PropertyValueFactory("roomTypeID"));
+        tblReservationDetails.getColumns().get(1).setCellValueFactory(new PropertyValueFactory("type"));
+        tblReservationDetails.getColumns().get(2).setCellValueFactory(new PropertyValueFactory("keyMoney"));
+        tblReservationDetails.getColumns().get(3).setCellValueFactory(new PropertyValueFactory("qtyOnHand"));
+        tblReservationDetails.getColumns().get(4).setCellValueFactory(new PropertyValueFactory("qty"));
+        tblReservationDetails.getColumns().get(5).setCellValueFactory(new PropertyValueFactory("total"));
+
+        TableColumn<ReservationTM, Button> lastCol = (TableColumn<ReservationTM, Button>) tblReservationDetails.getColumns().get(6);
+        lastCol.setCellValueFactory(param -> {
+            Button btnRemove=new Button("Remove");
+            btnRemove.setOnAction(event -> {
+                tblReservationDetails.getItems().remove(param.getValue());
+                tblReservationDetails.getSelectionModel().clearSelection();
+                cmbRoomTypeID.getSelectionModel().clearSelection();
+//                calculateTotal();
+            });
+            return new ReadOnlyObjectWrapper<>(btnRemove);
+        });
+
         lblReservationID.setText(generateNewReservationID());
 
         AnimationUtil.windowAnimation(makeReservationFormContext);
@@ -116,11 +138,74 @@ public class MakeReservationFormController {
     }
 
     public void btnNewStudentOnAction(ActionEvent actionEvent) {
+        if (btnNewStudent.getText().equalsIgnoreCase("+New Student")){
+            cmbStudentID.setVisible(false);
+            txtStudentId.setVisible(true);
+            txtName.clear();
+            txtAddress.clear();
+            txtContactNo.clear();
+            txtDob.clear();
+            cmbGender.getSelectionModel().clearSelection();
+            txtName.setDisable(false);
+            txtName.setEditable(true);
+            txtAddress.setDisable(false);
+            txtAddress.setEditable(true);
+            txtContactNo.setDisable(false);
+            txtContactNo.setEditable(true);
+            txtDob.setDisable(false);
+            txtDob.setEditable(true);
+            cmbGender.setDisable(false);
+            txtStudentId.requestFocus();
+            btnNewStudent.setText("Add Student");
+        }else if (btnNewStudent.getText().equalsIgnoreCase("Add Student")){
+            if (makeReservationBO.checkTheStudentIsExist(txtStudentId.getText())) {
+                new Alert(Alert.AlertType.WARNING,"Student Id Already Exist").show();
 
+                ObservableList<StudentDTO> students = cmbStudentID.getItems();
+                for (StudentDTO student : students) {
+                    if (student.getStudentId().equalsIgnoreCase(txtStudentId.getText())){
+                        txtStudentId.clear();
+                        txtStudentId.setVisible(false);
+                        cmbStudentID.setVisible(true);
+                        txtName.setEditable(false);
+                        txtAddress.setEditable(false);
+                        txtContactNo.setEditable(false);
+                        txtDob.setEditable(false);
+                        btnNewStudent.setText("+New Student");
+                        cmbStudentID.getSelectionModel().select(student);
+                        txtName.setText(student.getName());
+                        txtAddress.setText(student.getAddress());
+                        txtContactNo.setText(student.getContactNo());
+                        txtDob.setText(String.valueOf(student.getDob()));
+                        cmbGender.getSelectionModel().select(student.getGender());
+                    }
+                }
+            }else{
+                StudentDTO studentDTO = new StudentDTO(txtStudentId.getText(), txtName.getText(), txtAddress.getText(), txtContactNo.getText(), LocalDate.parse(txtDob.getText()), cmbGender.getValue());
+                if (makeReservationBO.saveStudent(studentDTO)) {
+                    txtStudentId.clear();
+                    txtStudentId.setVisible(false);
+                    cmbStudentID.setVisible(true);
+                    cmbStudentID.getItems().add(studentDTO);
+                    cmbStudentID.getSelectionModel().select(studentDTO);
+                }
+            }
+        }
     }
 
     public void btnAddToListOnAction(ActionEvent actionEvent) {
+        int qtyOnHand=Integer.parseInt(txtQtyOnHand.getText());
+        int qty=Integer.parseInt(txtQty.getText());
+        double total=Double.parseDouble(txtKeyMoney.getText())*qty;
+        tblReservationDetails.getItems().add(new ReservationTM(cmbRoomTypeID.getValue().getRoomTypeId(),txtType.getText(),txtKeyMoney.getText(),qtyOnHand,qty,total));
 
+        txtType.clear();
+        txtKeyMoney.clear();
+        txtQtyOnHand.clear();
+        txtQty.clear();
+        btnAddToList.setDisable(true);
+        btnNewStudent.setDisable(true);
+        cmbStudentID.setDisable(true);
     }
 
     public void btnReserveOnAction(ActionEvent actionEvent) {

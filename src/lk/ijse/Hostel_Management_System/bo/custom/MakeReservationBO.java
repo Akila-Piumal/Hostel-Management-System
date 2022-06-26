@@ -12,4 +12,8 @@ public interface MakeReservationBO extends SuperBO {
     List<RoomDTO> getAllRooms();
 
     String generateNewReservationID();
+
+    boolean saveStudent(StudentDTO studentDTO);
+
+    boolean checkTheStudentIsExist(String studentId);
 }

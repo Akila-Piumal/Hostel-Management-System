@@ -45,5 +45,15 @@ public class MakeReservationBOImpl implements MakeReservationBO {
         return reservationDAO.generateNewID();
     }
 
+    @Override
+    public boolean saveStudent(StudentDTO studentDTO) {
+        return studentDAO.save(new Student(studentDTO.getStudentId(),studentDTO.getName(),studentDTO.getAddress(),studentDTO.getContactNo(),studentDTO.getDob(),studentDTO.getGender()));
+    }
+
+    @Override
+    public boolean checkTheStudentIsExist(String studentId) {
+        return studentDAO.exist(studentId);
+    }
+
 
 }
