@@ -62,46 +62,25 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXComboBox fx:id="cmbRoomTypeID" labelFloat="true" layoutX="16.0" layoutY="226.0" prefHeight="31.0" prefWidth="136.0" promptText="Room Type ID" />
-      <JFXTextField fx:id="txtType" labelFloat="true" layoutX="171.0" layoutY="226.0" prefHeight="31.0" prefWidth="123.0" promptText="Type" />
-      <JFXTextField fx:id="txtKeyMoney" labelFloat="true" layoutX="309.0" layoutY="226.0" prefHeight="31.0" prefWidth="149.0" promptText="Key Money For Room" />
-      <JFXTextField fx:id="txtQtyOnHand" labelFloat="true" layoutX="491.0" layoutY="226.0" prefHeight="31.0" prefWidth="118.0" promptText="Qty On Hand" />
-      <JFXTextField fx:id="txtQty" labelFloat="true" layoutX="633.0" layoutY="226.0" prefHeight="31.0" prefWidth="76.0" promptText="Qty" />
-      <JFXButton fx:id="btnAddToList" buttonType="RAISED" layoutX="726.0" layoutY="222.0" onAction="#btnAddToListOnAction" prefHeight="31.0" prefWidth="118.0" style="-fx-background-color: #12CBC4;" text="Add to List" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </JFXButton>
-      <TableView fx:id="tblReservationDetails" layoutX="18.0" layoutY="295.0" prefHeight="360.0" prefWidth="820.0">
+      <JFXComboBox fx:id="cmbRoomTypeID" labelFloat="true" layoutX="16.0" layoutY="233.0" prefHeight="31.0" prefWidth="136.0" promptText="Room Type ID" />
+      <JFXTextField fx:id="txtType" labelFloat="true" layoutX="203.0" layoutY="233.0" prefHeight="31.0" prefWidth="123.0" promptText="Type" />
+      <JFXTextField fx:id="txtKeyMoney" labelFloat="true" layoutX="374.0" layoutY="233.0" prefHeight="31.0" prefWidth="149.0" promptText="Key Money For Room" />
+      <JFXTextField fx:id="txtQtyOnHand" labelFloat="true" layoutX="581.0" layoutY="233.0" prefHeight="31.0" prefWidth="118.0" promptText="Qty On Hand" />
+      <TableView fx:id="tblReservationDetails" layoutX="18.0" layoutY="405.0" prefHeight="360.0" prefWidth="820.0">
          <columns>
-            <TableColumn prefWidth="129.0" text="Room Type ID" />
-            <TableColumn minWidth="8.0" prefWidth="128.0" text="Type" />
-            <TableColumn prefWidth="136.0" text="Key Money" />
-            <TableColumn prefWidth="115.0" text="QtyOnHand" />
-            <TableColumn prefWidth="91.0" text="Qty" />
-            <TableColumn prefWidth="118.0" text="Total" />
-            <TableColumn prefWidth="102.0" text="Remove" />
+            <TableColumn prefWidth="143.0" text="Reservation ID" />
+            <TableColumn minWidth="8.0" prefWidth="172.0" text="Date" />
+            <TableColumn prefWidth="179.0" text="Room ID" />
+            <TableColumn prefWidth="176.0" text="Student ID" />
+            <TableColumn prefWidth="149.0" text="Status" />
          </columns>
       </TableView>
-      <Label layoutX="256.0" layoutY="694.0" prefHeight="39.0" prefWidth="76.0" text="Total">
-         <font>
-            <Font name="System Bold" size="27.0" />
-         </font>
-      </Label>
-      <Label fx:id="lblTotal" alignment="CENTER" layoutX="336.0" layoutY="695.0" prefHeight="17.0" prefWidth="123.0" style="-fx-border-radius: 6; -fx-border-color: black;">
-         <font>
-            <Font name="System Bold" size="23.0" />
-         </font>
-      </Label>
-      <JFXTextField fx:id="txtPaidKeyMoney" labelFloat="true" layoutX="492.0" layoutY="687.0" prefHeight="31.0" prefWidth="170.0" promptText="Paid Key Money">
+      <JFXTextField fx:id="txtPaidKeyMoney" labelFloat="true" layoutX="428.0" layoutY="313.0" prefHeight="31.0" prefWidth="170.0" promptText="Paid Key Money">
          <font>
             <Font name="System Bold" size="19.0" />
          </font>
       </JFXTextField>
-      <JFXButton fx:id="btnReserve" buttonType="RAISED" layoutX="711.0" layoutY="684.0" onAction="#btnReserveOnAction" style="-fx-background-color: #ff7979; -fx-background-radius: 8;" text="Reserve" textFill="WHITE">
+      <JFXButton fx:id="btnReserve" buttonType="RAISED" layoutX="663.0" layoutY="310.0" onAction="#btnReserveOnAction" style="-fx-background-color: #ff7979; -fx-background-radius: 8;" text="Reserve" textFill="WHITE">
          <font>
             <Font name="System Bold" size="22.0" />
          </font>

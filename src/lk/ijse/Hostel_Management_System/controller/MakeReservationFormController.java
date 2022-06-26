@@ -11,8 +11,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.Hostel_Management_System.bo.BOFactory;
 import lk.ijse.Hostel_Management_System.bo.custom.MakeReservationBO;
+import lk.ijse.Hostel_Management_System.dto.ReservationDTO;
 import lk.ijse.Hostel_Management_System.dto.RoomDTO;
 import lk.ijse.Hostel_Management_System.dto.StudentDTO;
+import lk.ijse.Hostel_Management_System.entity.Room;
+import lk.ijse.Hostel_Management_System.entity.Student;
 import lk.ijse.Hostel_Management_System.util.AnimationUtil;
 import lk.ijse.Hostel_Management_System.view.tdm.ReservationTM;
 
@@ -34,10 +37,7 @@ public class MakeReservationFormController {
     public JFXTextField txtType;
     public JFXTextField txtKeyMoney;
     public JFXTextField txtQtyOnHand;
-    public JFXTextField txtQty;
-    public JFXButton btnAddToList;
     public TableView<ReservationTM> tblReservationDetails;
-    public Label lblTotal;
     public JFXTextField txtPaidKeyMoney;
     public JFXButton btnReserve;
     public JFXComboBox<StudentDTO> cmbStudentID;
@@ -46,34 +46,11 @@ public class MakeReservationFormController {
     MakeReservationBO makeReservationBO = (MakeReservationBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.MAKERESERVATION);
 
     public void initialize() {
-        tblReservationDetails.getColumns().get(0).setCellValueFactory(new PropertyValueFactory("roomTypeID"));
-        tblReservationDetails.getColumns().get(1).setCellValueFactory(new PropertyValueFactory("type"));
-        tblReservationDetails.getColumns().get(2).setCellValueFactory(new PropertyValueFactory("keyMoney"));
-        tblReservationDetails.getColumns().get(3).setCellValueFactory(new PropertyValueFactory("qtyOnHand"));
-        tblReservationDetails.getColumns().get(4).setCellValueFactory(new PropertyValueFactory("qty"));
-        tblReservationDetails.getColumns().get(5).setCellValueFactory(new PropertyValueFactory("total"));
-
-        TableColumn<ReservationTM, Button> lastCol = (TableColumn<ReservationTM, Button>) tblReservationDetails.getColumns().get(6);
-        lastCol.setCellValueFactory(param -> {
-            Button btnRemove = new Button("Remove");
-            btnRemove.setOnAction(event -> {
-                tblReservationDetails.getItems().remove(param.getValue());
-                tblReservationDetails.getSelectionModel().clearSelection();
-                cmbRoomTypeID.getSelectionModel().clearSelection();
-                txtType.clear();
-                txtKeyMoney.clear();
-                txtQtyOnHand.clear();
-                cmbRoomTypeID.setDisable(false);
-                cmbRoomTypeID.requestFocus();
-
-                if (tblReservationDetails.getItems().isEmpty()) {
-                    btnNewStudent.setDisable(false);
-                    cmbStudentID.setDisable(false);
-                }
-                calculateTotal();
-            });
-            return new ReadOnlyObjectWrapper<>(btnRemove);
-        });
+        tblReservationDetails.getColumns().get(0).setCellValueFactory(new PropertyValueFactory("res_id"));
+        tblReservationDetails.getColumns().get(1).setCellValueFactory(new PropertyValueFactory("date"));
+        tblReservationDetails.getColumns().get(2).setCellValueFactory(new PropertyValueFactory("roomId"));
+        tblReservationDetails.getColumns().get(3).setCellValueFactory(new PropertyValueFactory("studentId"));
+        tblReservationDetails.getColumns().get(4).setCellValueFactory(new PropertyValueFactory("status"));
 
         lblReservationID.setText(generateNewReservationID());
 
@@ -114,32 +91,19 @@ public class MakeReservationFormController {
             txtType.setDisable(false);
             txtKeyMoney.setDisable(false);
             txtQtyOnHand.setDisable(false);
-            txtQty.setDisable(false);
-            btnAddToList.setDisable(false);
-            if (newValue != null) {
-                txtType.setText(newValue.getType());
-                txtKeyMoney.setText(newValue.getKeyMoney());
-                Optional<ReservationTM> optReservationDetail = tblReservationDetails.getItems().stream().filter(detail -> detail.getRoomTypeID().equals(newValue.getRoomTypeId())).findFirst();
-                txtQtyOnHand.setText((optReservationDetail.isPresent() ? newValue.getQty() - optReservationDetail.get().getQty() : newValue.getQty()) + "");
-            }
-
+            txtType.setText(newValue.getType());
+            txtKeyMoney.setText(newValue.getKeyMoney());
+            txtQtyOnHand.setText(String.valueOf(newValue.getQty()));
         });
 
-        tblReservationDetails.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue != null) {
-                cmbRoomTypeID.getSelectionModel().select(new RoomDTO(newValue.getRoomTypeID(), newValue.getType(), newValue.getKeyMoney(), newValue.getQtyOnHand()));
-                cmbRoomTypeID.setDisable(true);
-//                cmbRoomTypeID.setDisable(true);
-                btnAddToList.setText("Update");
-                txtQtyOnHand.setText(String.valueOf(newValue.getQtyOnHand()));
-                txtQty.setText(newValue.getQty() + "");
-                txtQty.requestFocus();
-            } else {
-                btnAddToList.setText("Add to List");
-                cmbRoomTypeID.getSelectionModel().clearSelection();
-                txtQty.clear();
-            }
-        });
+        loadAllReservationDetails();
+    }
+
+    private void loadAllReservationDetails() {
+        List<ReservationDTO> allReservations = makeReservationBO.getAllReservations();
+        for (ReservationDTO reservationDTO : allReservations) {
+            tblReservationDetails.getItems().add(new ReservationTM(reservationDTO.getRes_id(),reservationDTO.getDate(),reservationDTO.getRoom().getRoomTypeId(),reservationDTO.getStudent().getStudentId(),reservationDTO.getStatus()));
+        }
     }
 
     public String generateNewReservationID() {
@@ -163,9 +127,6 @@ public class MakeReservationFormController {
         txtKeyMoney.setEditable(false);
         txtQtyOnHand.setDisable(true);
         txtQtyOnHand.setEditable(false);
-        txtQty.setDisable(true);
-        btnAddToList.setDisable(true);
-        btnReserve.setDisable(true);
     }
 
     public void btnNewStudentOnAction(ActionEvent actionEvent) {
@@ -225,53 +186,25 @@ public class MakeReservationFormController {
         }
     }
 
-    public void btnAddToListOnAction(ActionEvent actionEvent) {
-        int qtyOnHand = Integer.parseInt(txtQtyOnHand.getText());
-        int qty = Integer.parseInt(txtQty.getText());
-        double total = Double.parseDouble(txtKeyMoney.getText()) * qty;
-
-        boolean exists = tblReservationDetails.getItems().stream().anyMatch(detail -> detail.getRoomTypeID().equalsIgnoreCase(cmbRoomTypeID.getValue().getRoomTypeId()));
-
-        if (exists) {
-            ReservationTM reservationTM = tblReservationDetails.getItems().stream().filter(detail -> detail.getRoomTypeID().equals(cmbRoomTypeID.getValue().getRoomTypeId())).findFirst().get();
-
-            if (btnAddToList.getText().equalsIgnoreCase("Update")) {
-                reservationTM.setQty(qty);
-                reservationTM.setTotal(total);
-                cmbRoomTypeID.setDisable(false);
-                tblReservationDetails.getSelectionModel().clearSelection();
-            } else {
-                reservationTM.setQty(reservationTM.getQty() + qty);
-                total = (Double.parseDouble(txtKeyMoney.getText()) * reservationTM.getQty());
-                reservationTM.setTotal(total);
-            }
-            tblReservationDetails.refresh();
-
-        } else {
-            tblReservationDetails.getItems().add(new ReservationTM(cmbRoomTypeID.getValue().getRoomTypeId(), txtType.getText(), txtKeyMoney.getText(), qtyOnHand, qty, total));
-        }
-        txtType.clear();
-        txtKeyMoney.clear();
-        txtQtyOnHand.clear();
-        txtQty.clear();
-        btnAddToList.setDisable(true);
-        btnNewStudent.setDisable(true);
-        cmbStudentID.setDisable(true);
-        cmbRoomTypeID.getSelectionModel().clearSelection();
-        btnAddToList.setDisable(true);
-        calculateTotal();
-    }
-
     public void btnReserveOnAction(ActionEvent actionEvent) {
-
-    }
-
-    public void calculateTotal(){
-        ObservableList<ReservationTM> items = tblReservationDetails.getItems();
-        double total = 0;
-        for (ReservationTM item : items) {
-            total+=item.getTotal();
+        double keyMoney=Double.parseDouble(txtKeyMoney.getText());
+        double paidKeyMoney=Double.parseDouble(txtPaidKeyMoney.getText());
+        String status="";
+        if (keyMoney==paidKeyMoney){
+            status="Paid";
+        }else{
+            double balanceToPay=keyMoney-paidKeyMoney;
+            status=String.valueOf(balanceToPay);
         }
-        lblTotal.setText(String.valueOf(total));
+        StudentDTO studentDTO = cmbStudentID.getValue();
+        RoomDTO roomDTO = cmbRoomTypeID.getValue();
+        Student student=new Student(studentDTO.getStudentId(),studentDTO.getName(),studentDTO.getAddress(),studentDTO.getContactNo(),studentDTO.getDob(),studentDTO.getGender());
+        Room room=new Room(roomDTO.getRoomTypeId(),roomDTO.getType(),roomDTO.getKeyMoney(),roomDTO.getQty());
+
+        if (makeReservationBO.saveReservation(new ReservationDTO(lblReservationID.getText(), LocalDate.parse(lblDate.getText()),status,student,room))) {
+            tblReservationDetails.getItems().add(new ReservationTM(lblReservationID.getText(),LocalDate.parse(lblDate.getText()),room.getRoomTypeId(),student.getStudentId(),status));
+            new Alert(Alert.AlertType.CONFIRMATION,"Reserved").show();
+        }
+
     }
 }

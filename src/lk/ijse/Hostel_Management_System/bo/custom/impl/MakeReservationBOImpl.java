@@ -6,8 +6,10 @@ import lk.ijse.Hostel_Management_System.dao.SuperDAO;
 import lk.ijse.Hostel_Management_System.dao.custom.ReservationDAO;
 import lk.ijse.Hostel_Management_System.dao.custom.RoomDAO;
 import lk.ijse.Hostel_Management_System.dao.custom.StudentDAO;
+import lk.ijse.Hostel_Management_System.dto.ReservationDTO;
 import lk.ijse.Hostel_Management_System.dto.RoomDTO;
 import lk.ijse.Hostel_Management_System.dto.StudentDTO;
+import lk.ijse.Hostel_Management_System.entity.Reservation;
 import lk.ijse.Hostel_Management_System.entity.Room;
 import lk.ijse.Hostel_Management_System.entity.Student;
 
@@ -55,5 +57,19 @@ public class MakeReservationBOImpl implements MakeReservationBO {
         return studentDAO.exist(studentId);
     }
 
+    @Override
+    public boolean saveReservation(ReservationDTO reservationDTO) {
+        return reservationDAO.save(new Reservation(reservationDTO.getRes_id(),reservationDTO.getDate(),reservationDTO.getStatus(),reservationDTO.getStudent(),reservationDTO.getRoom()));
+    }
+
+    @Override
+    public List<ReservationDTO> getAllReservations() {
+        List<Reservation> all = reservationDAO.getAll();
+        List<ReservationDTO> allReservations=new ArrayList<>();
+        for (Reservation reservation : all) {
+            allReservations.add(new ReservationDTO(reservation.getRes_id(),reservation.getDate(),reservation.getStatus(),reservation.getStudent(),reservation.getRoom()));
+        }
+        return allReservations;
+    }
 
 }
