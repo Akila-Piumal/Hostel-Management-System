@@ -75,25 +75,30 @@ public class MakeReservationFormController {
         cmbGender.getItems().add("FeMale");
 
         cmbStudentID.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            txtName.setDisable(false);
-            txtAddress.setDisable(false);
-            txtContactNo.setDisable(false);
-            txtDob.setDisable(false);
-            cmbGender.setDisable(false);
-            txtName.setText(newValue.getName());
-            txtAddress.setText(newValue.getAddress());
-            txtContactNo.setText(newValue.getContactNo());
-            txtDob.setText(String.valueOf(newValue.getDob()));
-            cmbGender.getSelectionModel().select(newValue.getGender());
+            if (newValue!=null){
+                txtName.setDisable(false);
+                txtAddress.setDisable(false);
+                txtContactNo.setDisable(false);
+                txtDob.setDisable(false);
+                cmbGender.setDisable(false);
+                txtName.setText(newValue.getName());
+                txtAddress.setText(newValue.getAddress());
+                txtContactNo.setText(newValue.getContactNo());
+                txtDob.setText(String.valueOf(newValue.getDob()));
+                cmbGender.getSelectionModel().select(newValue.getGender());
+            }
         });
 
         cmbRoomTypeID.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            txtType.setDisable(false);
-            txtKeyMoney.setDisable(false);
-            txtQtyOnHand.setDisable(false);
-            txtType.setText(newValue.getType());
-            txtKeyMoney.setText(newValue.getKeyMoney());
-            txtQtyOnHand.setText(String.valueOf(newValue.getQty()));
+            if (newValue!=null){
+                txtType.setDisable(false);
+                txtKeyMoney.setDisable(false);
+                txtQtyOnHand.setDisable(false);
+                txtType.setText(newValue.getType());
+                txtKeyMoney.setText(newValue.getKeyMoney());
+                txtQtyOnHand.setText(String.valueOf(newValue.getQty()));
+                btnReserve.setDisable(false);
+            }
         });
 
         loadAllReservationDetails();
@@ -127,6 +132,7 @@ public class MakeReservationFormController {
         txtKeyMoney.setEditable(false);
         txtQtyOnHand.setDisable(true);
         txtQtyOnHand.setEditable(false);
+        btnReserve.setDisable(true);
     }
 
     public void btnNewStudentOnAction(ActionEvent actionEvent) {
@@ -204,6 +210,20 @@ public class MakeReservationFormController {
         if (makeReservationBO.saveReservation(new ReservationDTO(lblReservationID.getText(), LocalDate.parse(lblDate.getText()),status,student,room))) {
             tblReservationDetails.getItems().add(new ReservationTM(lblReservationID.getText(),LocalDate.parse(lblDate.getText()),room.getRoomTypeId(),student.getStudentId(),status));
             new Alert(Alert.AlertType.CONFIRMATION,"Reserved").show();
+            makeReservationBO.updateRoomDetails(new RoomDTO(room.getRoomTypeId(),room.getType(),room.getKeyMoney(),room.getQty()));
+            txtPaidKeyMoney.clear();
+            cmbStudentID.getSelectionModel().clearSelection();
+            cmbRoomTypeID.getSelectionModel().clearSelection();
+            btnReserve.setDisable(true);
+            txtName.clear();
+            txtAddress.clear();
+            txtContactNo.clear();
+            txtDob.clear();
+            cmbGender.getSelectionModel().clearSelection();
+            txtType.clear();
+            txtKeyMoney.clear();
+            txtQtyOnHand.clear();
+            lblReservationID.setText(generateNewReservationID());
         }
 
     }

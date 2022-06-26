@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="800.0" prefWidth="848.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Hostel_Management_System.controller.ReservationDetailsFormController">
+<AnchorPane fx:id="reservationDetailsFormContext" prefHeight="800.0" prefWidth="848.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Hostel_Management_System.controller.ReservationDetailsFormController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="800.0" layoutX="9.0" layoutY="8.0" stroke="WHITE" strokeType="INSIDE" width="848.0">
          <fill>
@@ -18,5 +24,41 @@
             </LinearGradient>
          </fill>
       </Rectangle>
+      <Label layoutX="242.0" layoutY="24.0" text="Reservation Details" underline="true">
+         <font>
+            <Font name="System Bold Italic" size="41.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="0.4563106796116505" endY="0.21359223300970875">
+               <stops>
+                  <Stop color="BLACK" />
+                  <Stop color="#2a8ac6" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+      <TableView fx:id="tblReservationDetails" layoutX="45.0" layoutY="282.0" prefHeight="493.0" prefWidth="778.0">
+         <columns>
+            <TableColumn prefWidth="128.0" text="Reservation ID" />
+            <TableColumn minWidth="8.0" prefWidth="129.0" text="Date" />
+            <TableColumn prefWidth="143.0" text="Room ID" />
+            <TableColumn prefWidth="130.0" text="Student ID" />
+            <TableColumn prefWidth="126.0" text="Status" />
+            <TableColumn prefWidth="121.0" text="Remove" />
+         </columns>
+      </TableView>
+      <JFXTextField fx:id="txtReservationID" labelFloat="true" layoutX="55.0" layoutY="173.0" prefHeight="31.0" prefWidth="104.0" promptText="Reservation ID" />
+      <JFXTextField fx:id="txtDate" labelFloat="true" layoutX="176.0" layoutY="173.0" prefHeight="31.0" prefWidth="96.0" promptText="Date" />
+      <JFXTextField fx:id="txtRoomID" labelFloat="true" layoutX="291.0" layoutY="173.0" prefHeight="31.0" prefWidth="96.0" promptText="Room ID" />
+      <JFXTextField fx:id="txtStudentID" labelFloat="true" layoutX="409.0" layoutY="173.0" prefHeight="31.0" prefWidth="96.0" promptText="Student ID" />
+      <JFXTextField fx:id="txtStatus" labelFloat="true" layoutX="527.0" layoutY="173.0" prefHeight="31.0" prefWidth="96.0" promptText="Status" />
+      <JFXButton fx:id="btnUpdate" buttonType="RAISED" layoutX="698.0" layoutY="167.0" onAction="#btnUpdateOnAction" prefHeight="31.0" prefWidth="111.0" style="-fx-background-color: #55E6C1; -fx-background-radius: 8;" text="Update" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
    </children>
 </AnchorPane>

@@ -22,9 +22,9 @@ public class Reservation {
     private LocalDate date;
     private String status;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Student student;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Room room;
 }

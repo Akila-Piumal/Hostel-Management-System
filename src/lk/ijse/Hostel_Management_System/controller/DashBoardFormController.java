@@ -29,8 +29,8 @@ public class DashBoardFormController {
         setUi("manageRoms");
     }
 
-    public void reservationDetailsFormOnAction(ActionEvent actionEvent) {
-
+    public void reservationDetailsFormOnAction(ActionEvent actionEvent) throws IOException {
+        setUi("reservationDetails");
     }
 
     public void makeReservationFormOnAction(ActionEvent actionEvent) throws IOException {

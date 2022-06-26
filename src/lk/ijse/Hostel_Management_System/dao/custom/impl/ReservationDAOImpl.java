@@ -44,8 +44,17 @@ public class ReservationDAOImpl implements ReservationDAO {
     }
 
     @Override
-    public boolean delete(String s) {
-        return false;
+    public boolean delete(String id) {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        Reservation reservation = session.load(Reservation.class, id);
+        session.delete(reservation);
+
+        transaction.commit();
+        session.close();
+
+        return true;
     }
 
     @Override
