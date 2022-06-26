@@ -199,7 +199,7 @@ public class MakeReservationFormController {
         StudentDTO studentDTO = cmbStudentID.getValue();
         RoomDTO roomDTO = cmbRoomTypeID.getValue();
         Student student=new Student(studentDTO.getStudentId(),studentDTO.getName(),studentDTO.getAddress(),studentDTO.getContactNo(),studentDTO.getDob(),studentDTO.getGender());
-        Room room=new Room(roomDTO.getRoomTypeId(),roomDTO.getType(),roomDTO.getKeyMoney(),roomDTO.getQty());
+        Room room=new Room(roomDTO.getRoomTypeId(),roomDTO.getType(),roomDTO.getKeyMoney(),roomDTO.getQty()-1);
 
         if (makeReservationBO.saveReservation(new ReservationDTO(lblReservationID.getText(), LocalDate.parse(lblDate.getText()),status,student,room))) {
             tblReservationDetails.getItems().add(new ReservationTM(lblReservationID.getText(),LocalDate.parse(lblDate.getText()),room.getRoomTypeId(),student.getStudentId(),status));

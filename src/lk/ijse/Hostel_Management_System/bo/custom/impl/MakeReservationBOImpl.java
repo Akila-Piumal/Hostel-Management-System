@@ -72,4 +72,9 @@ public class MakeReservationBOImpl implements MakeReservationBO {
         return allReservations;
     }
 
+    @Override
+    public boolean updateRoomDetails(RoomDTO roomDTO) {
+        return roomDAO.update(new Room(roomDTO.getRoomTypeId(),roomDTO.getType(),roomDTO.getKeyMoney(),roomDTO.getQty()));
+    }
+
 }
