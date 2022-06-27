@@ -17,4 +17,6 @@ public interface ReservationDetailsBO extends SuperBO {
     RoomDTO getRoom(String roomTypeID);
 
     boolean updateReservationStatus(String res_Id ,String status);
+
+    StudentDTO getStudent(String studentID);
 }

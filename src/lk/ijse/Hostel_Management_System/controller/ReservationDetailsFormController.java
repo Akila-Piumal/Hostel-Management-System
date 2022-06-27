@@ -11,6 +11,7 @@ import lk.ijse.Hostel_Management_System.bo.BOFactory;
 import lk.ijse.Hostel_Management_System.bo.custom.ReservationDetailsBO;
 import lk.ijse.Hostel_Management_System.dto.ReservationDTO;
 import lk.ijse.Hostel_Management_System.dto.RoomDTO;
+import lk.ijse.Hostel_Management_System.dto.StudentDTO;
 import lk.ijse.Hostel_Management_System.util.AnimationUtil;
 import lk.ijse.Hostel_Management_System.view.tdm.ReservationTM;
 
@@ -24,6 +25,11 @@ public class ReservationDetailsFormController {
     public JFXTextField txtDate;
     public JFXTextField txtRoomID;
     public JFXTextField txtStudentID;
+    public JFXTextField txtName;
+    public JFXTextField txtAddress;
+    public JFXTextField txtContact;
+    public JFXTextField txtDob;
+    public JFXTextField txtGender;
     public JFXTextField txtStatus;
     public JFXButton btnUpdate;
     public AnchorPane reservationDetailsFormContext;
@@ -31,13 +37,7 @@ public class ReservationDetailsFormController {
     public void initialize() {
         AnimationUtil.windowAnimation(reservationDetailsFormContext);
 
-        btnUpdate.setDisable(true);
-        txtReservationID.setDisable(true);
-        txtDate.setDisable(true);
-        txtStudentID.setDisable(true);
-        txtRoomID.setDisable(true);
-        txtStatus.setDisable(true);
-
+        disableFields();
 
         tblReservationDetails.getColumns().get(0).setCellValueFactory(new PropertyValueFactory("res_id"));
         tblReservationDetails.getColumns().get(1).setCellValueFactory(new PropertyValueFactory("date"));
@@ -56,6 +56,10 @@ public class ReservationDetailsFormController {
                         new Alert(Alert.AlertType.CONFIRMATION, "Removed..!!").show();
                         RoomDTO roomDTO = reservationDetailsBO.getRoom(param.getValue().getRoomId());
                         reservationDetailsBO.updateRoomQty(roomDTO.getRoomTypeId(), roomDTO.getQty() + 1);
+
+                        clearFields();
+
+                        btnUpdate.setDisable(true);
                     }
                 }
             });
@@ -73,16 +77,63 @@ public class ReservationDetailsFormController {
                 txtDate.setEditable(false);
                 txtStudentID.setEditable(false);
                 txtRoomID.setEditable(false);
+                txtName.setDisable(false);
+                txtName.setEditable(false);
+                txtAddress.setDisable(false);
+                txtAddress.setEditable(false);
+                txtContact.setDisable(false);
+                txtContact.setEditable(false);
+                txtDob.setDisable(false);
+                txtDob.setEditable(false);
+                txtGender.setDisable(false);
+                txtGender.setEditable(false);
                 txtReservationID.setText(newValue.getRes_id());
                 txtDate.setText(String.valueOf(newValue.getDate()));
                 txtRoomID.setText(newValue.getRoomId());
-                txtStudentID.setText(newValue.getStudentId());
                 txtStatus.setText(newValue.getStatus());
                 btnUpdate.setDisable(false);
+
+                StudentDTO student = reservationDetailsBO.getStudent(newValue.getStudentId());
+                txtStudentID.setText(student.getStudentId());
+                txtName.setText(student.getName());
+                txtAddress.setText(student.getAddress());
+                txtContact.setText(student.getContactNo());
+                txtDob.setText(String.valueOf(student.getDob()));
+                txtGender.setText(student.getGender());
+
+                txtStatus.requestFocus();
             }
         });
 
         loadAllReservationDetails();
+    }
+
+    private void disableFields(){
+        btnUpdate.setDisable(true);
+        txtReservationID.setDisable(true);
+        txtDate.setDisable(true);
+        txtStudentID.setDisable(true);
+        txtRoomID.setDisable(true);
+        txtStatus.setDisable(true);
+        txtName.setDisable(true);
+        txtAddress.setDisable(true);
+        txtContact.setDisable(true);
+        txtDob.setDisable(true);
+        txtGender.setDisable(true);
+    }
+
+    private void clearFields(){
+        tblReservationDetails.getSelectionModel().clearSelection();
+        txtReservationID.clear();
+        txtDate.clear();
+        txtRoomID.clear();
+        txtStatus.clear();
+        txtStudentID.clear();
+        txtName.clear();
+        txtAddress.clear();
+        txtContact.clear();
+        txtDob.clear();
+        txtGender.clear();
     }
 
     private void loadAllReservationDetails() {
@@ -99,6 +150,9 @@ public class ReservationDetailsFormController {
                 new Alert(Alert.AlertType.CONFIRMATION, "Updated").show();
                 selectedItem.setStatus(txtStatus.getText());
                 tblReservationDetails.refresh();
+                clearFields();
+                disableFields();
+                tblReservationDetails.requestFocus();
             }
         }
     }

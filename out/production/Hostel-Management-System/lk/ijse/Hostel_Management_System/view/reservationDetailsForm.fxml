@@ -12,9 +12,9 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="reservationDetailsFormContext" prefHeight="800.0" prefWidth="848.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Hostel_Management_System.controller.ReservationDetailsFormController">
+<AnchorPane fx:id="reservationDetailsFormContext" prefHeight="800.0" prefWidth="848.0" stylesheets="@assests/styles/manageStudentsForm.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Hostel_Management_System.controller.ReservationDetailsFormController">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" height="800.0" layoutX="9.0" layoutY="8.0" stroke="WHITE" strokeType="INSIDE" width="848.0">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="800.0" stroke="WHITE" strokeType="INSIDE" width="848.0">
          <fill>
             <LinearGradient endX="0.7961165048543689" endY="1.0" startX="0.6990291262135923" startY="0.6941747572815533">
                <stops>
@@ -37,7 +37,7 @@
             </LinearGradient>
          </textFill>
       </Label>
-      <TableView fx:id="tblReservationDetails" layoutX="45.0" layoutY="282.0" prefHeight="493.0" prefWidth="778.0">
+      <TableView fx:id="tblReservationDetails" layoutX="45.0" layoutY="282.0" prefHeight="449.0" prefWidth="778.0">
          <columns>
             <TableColumn prefWidth="128.0" text="Reservation ID" />
             <TableColumn minWidth="8.0" prefWidth="129.0" text="Date" />
@@ -47,12 +47,11 @@
             <TableColumn prefWidth="121.0" text="Remove" />
          </columns>
       </TableView>
-      <JFXTextField fx:id="txtReservationID" labelFloat="true" layoutX="55.0" layoutY="173.0" prefHeight="31.0" prefWidth="104.0" promptText="Reservation ID" />
-      <JFXTextField fx:id="txtDate" labelFloat="true" layoutX="176.0" layoutY="173.0" prefHeight="31.0" prefWidth="96.0" promptText="Date" />
-      <JFXTextField fx:id="txtRoomID" labelFloat="true" layoutX="291.0" layoutY="173.0" prefHeight="31.0" prefWidth="96.0" promptText="Room ID" />
-      <JFXTextField fx:id="txtStudentID" labelFloat="true" layoutX="409.0" layoutY="173.0" prefHeight="31.0" prefWidth="96.0" promptText="Student ID" />
-      <JFXTextField fx:id="txtStatus" labelFloat="true" layoutX="527.0" layoutY="173.0" prefHeight="31.0" prefWidth="96.0" promptText="Status" />
-      <JFXButton fx:id="btnUpdate" buttonType="RAISED" layoutX="698.0" layoutY="167.0" onAction="#btnUpdateOnAction" prefHeight="31.0" prefWidth="111.0" style="-fx-background-color: #55E6C1; -fx-background-radius: 8;" text="Update" textFill="WHITE">
+      <JFXTextField fx:id="txtReservationID" labelFloat="true" layoutX="55.0" layoutY="137.0" prefHeight="31.0" prefWidth="104.0" promptText="Reservation ID" />
+      <JFXTextField fx:id="txtDate" labelFloat="true" layoutX="215.0" layoutY="138.0" prefHeight="31.0" prefWidth="96.0" promptText="Date" />
+      <JFXTextField fx:id="txtRoomID" labelFloat="true" layoutX="368.0" layoutY="137.0" prefHeight="31.0" prefWidth="96.0" promptText="Room ID" />
+      <JFXTextField fx:id="txtStatus" labelFloat="true" layoutX="531.0" layoutY="137.0" prefHeight="31.0" prefWidth="96.0" promptText="Status" />
+      <JFXButton fx:id="btnUpdate" buttonType="RAISED" layoutX="687.0" layoutY="132.0" onAction="#btnUpdateOnAction" prefHeight="31.0" prefWidth="111.0" style="-fx-background-color: #55E6C1; -fx-background-radius: 8;" text="Update" textFill="WHITE">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
@@ -60,5 +59,11 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
+      <JFXTextField fx:id="txtStudentID" labelFloat="true" layoutX="55.0" layoutY="211.0" prefHeight="31.0" prefWidth="87.0" promptText="Student ID" />
+      <JFXTextField fx:id="txtName" labelFloat="true" layoutX="159.0" layoutY="211.0" prefHeight="31.0" prefWidth="87.0" promptText="Name" />
+      <JFXTextField fx:id="txtAddress" labelFloat="true" layoutX="263.0" layoutY="211.0" prefHeight="31.0" prefWidth="87.0" promptText="Address" />
+      <JFXTextField fx:id="txtContact" labelFloat="true" layoutX="372.0" layoutY="211.0" prefHeight="31.0" prefWidth="96.0" promptText="Contact No" />
+      <JFXTextField fx:id="txtDob" labelFloat="true" layoutX="490.0" layoutY="211.0" prefHeight="31.0" prefWidth="96.0" promptText="DOB" />
+      <JFXTextField fx:id="txtGender" labelFloat="true" layoutX="616.0" layoutY="211.0" prefHeight="31.0" prefWidth="81.0" promptText="Gender" />
    </children>
 </AnchorPane>

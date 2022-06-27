@@ -52,4 +52,10 @@ public class ReservationDetailsBOImpl implements ReservationDetailsBO {
     public boolean updateReservationStatus(String res_id, String status) {
         return reservationDAO.updateStatus(res_id,status);
     }
+
+    @Override
+    public StudentDTO getStudent(String studentID) {
+        Student student = studentDAO.search(studentID);
+        return new StudentDTO(student.getStudentId(),student.getName(),student.getAddress(),student.getContactNo(),student.getDob(),student.getGender());
+    }
 }

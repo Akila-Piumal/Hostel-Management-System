@@ -1,19 +1,29 @@
-.table-row-cell:selected{
-    -fx-background-color:linear-gradient(from 0% 0% to 100% 100%, white 0%, #007bff 50%, white 100%);
+.table-row-cell:selected {
+    -fx-background-color: linear-gradient(from 0% 0% to 100% 100%, white 0%, #007bff 50%, white 100%);
 }
 
-.table-row-cell:selected .table-cell{
+.table-row-cell:selected .table-cell {
     -fx-text-fill: black !important;
 }
 
-.text-field{
+.text-field {
     -fx-border-radius: 10;
 }
 
-#ancherPhane{
+#ancherPhane {
     -fx-background-color: white;
 }
 
-.table-column{
+.table-column {
     -fx-alignment: CENTER;
+}
+
+.table-view .column-header {
+    -fx-size: 40px;
+    -fx-background-color: #34495e;
+}
+
+.table-view .column-header .label {
+    -fx-font-size: 12px;
+    -fx-text-fill: white;
 }

@@ -15,10 +15,9 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane fx:id="LoginFormContext" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Hostel_Management_System.controller.LoginFormController">
    <children>
-      <ImageView fitHeight="629.0" fitWidth="584.0" layoutX="600.0" layoutY="143.0" pickOnBounds="true">
+      <ImageView fitHeight="504.0" fitWidth="584.0" layoutX="582.0" layoutY="186.0" pickOnBounds="true">
          <image>
             <Image url="@assests/images/hostel.png" />
          </image>
@@ -77,18 +76,21 @@
             </JFXButton>
          </children>
       </AnchorPane>
-      <Label layoutX="651.0" layoutY="11.0" prefHeight="132.0" prefWidth="515.0" text="WELCOME" textOverrun="CLIP" underline="true">
+      <Label layoutX="639.0" layoutY="28.0" prefHeight="132.0" prefWidth="515.0" text="D24 HOSTEL" textOverrun="CLIP">
          <font>
-            <Font name="Arial Black" size="89.0" />
+            <Font name="Arial Black" size="73.0" />
          </font>
          <textFill>
             <LinearGradient endX="0.10679611650485432" endY="0.35922330097087374" startX="0.10679611650485436" startY="0.6844660194174756">
                <stops>
-                  <Stop color="BLACK" />
-                  <Stop color="#dab633" offset="1.0" />
+                  <Stop color="#b59999" />
+                  <Stop color="#1b367a" offset="1.0" />
                </stops>
             </LinearGradient>
          </textFill>
+         <effect>
+            <ColorAdjust brightness="0.15" contrast="0.13" />
+         </effect>
       </Label>
    </children>
 </AnchorPane>
