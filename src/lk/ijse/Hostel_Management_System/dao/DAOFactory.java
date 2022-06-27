@@ -14,7 +14,7 @@ public class DAOFactory {
     }
 
     public enum DAOTypes{
-        LOGIN,STUDENT,ROOM, RESERVATION, USER
+        LOGIN,STUDENT,ROOM, RESERVATION, USER, QUERY
     }
 
     public SuperDAO getDAO(DAOTypes types){
@@ -29,6 +29,8 @@ public class DAOFactory {
                 return new ReservationDAOImpl();
             case USER:
                 return new UserDAOImpl();
+            case QUERY:
+                return new QueryDAOImpl();
             default:
                 return null;
         }

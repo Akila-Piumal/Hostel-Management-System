@@ -10,7 +10,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="848.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Hostel_Management_System.controller.UserManagementFormController">
+<AnchorPane fx:id="userManagementFormContext" prefHeight="800.0" prefWidth="848.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Hostel_Management_System.controller.UserManagementFormController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="800.0" layoutX="5.0" layoutY="1.0" stroke="WHITE" strokeType="INSIDE" width="848.0">
          <fill>

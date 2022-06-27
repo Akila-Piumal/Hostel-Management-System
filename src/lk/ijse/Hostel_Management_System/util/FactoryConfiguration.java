@@ -1,8 +1,5 @@
 package lk.ijse.Hostel_Management_System.util;
-import lk.ijse.Hostel_Management_System.entity.Reservation;
-import lk.ijse.Hostel_Management_System.entity.Room;
-import lk.ijse.Hostel_Management_System.entity.Student;
-import lk.ijse.Hostel_Management_System.entity.User;
+import lk.ijse.Hostel_Management_System.entity.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;

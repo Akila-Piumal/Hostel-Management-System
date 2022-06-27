@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="800.0" prefWidth="848.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Hostel_Management_System.controller.KeyMoneyRemainStudentsFormController">
+<AnchorPane prefHeight="800.0" prefWidth="848.0" stylesheets="@assests/styles/manageStudentsForm.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Hostel_Management_System.controller.KeyMoneyRemainStudentsFormController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="800.0" layoutX="9.0" layoutY="8.0" stroke="WHITE" strokeType="INSIDE" width="848.0">
          <fill>
@@ -33,5 +34,17 @@
             </LinearGradient>
          </textFill>
       </Label>
+      <TableView fx:id="tblKeyMoneyRemainDetails" layoutX="17.0" layoutY="218.0" prefHeight="491.0" prefWidth="827.0">
+         <columns>
+            <TableColumn prefWidth="96.0" text="Student Id" />
+            <TableColumn minWidth="8.0" prefWidth="116.0" text="name" />
+            <TableColumn prefWidth="118.0" text="Address" />
+            <TableColumn prefWidth="109.0" text="Contact No" />
+            <TableColumn prefWidth="87.0" text="Res_Id" />
+            <TableColumn prefWidth="89.0" text="Date" />
+            <TableColumn prefWidth="84.0" text="Room Id" />
+            <TableColumn prefWidth="127.0" text="Remain_Key_Money" />
+         </columns>
+      </TableView>
    </children>
 </AnchorPane>
