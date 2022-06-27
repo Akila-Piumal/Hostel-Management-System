@@ -57,6 +57,8 @@ public class LoginFormController {
 
         for (User user : users) {
             if (user.getUserName().equals(txtUserName.getText()) && user.getPassword().equals(txtPassword.getText())) {
+                DashBoardFormController.userName=txtUserName.getText();
+                DashBoardFormController.password=txtPassword.getText();
                 Stage stage = (Stage) LoginFormContext.getScene().getWindow();
                 stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../view/DashBoardForm.fxml"))));
                 stage.show();

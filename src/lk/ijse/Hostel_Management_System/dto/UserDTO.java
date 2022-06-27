@@ -1,18 +1,13 @@
-package lk.ijse.Hostel_Management_System.entity;
+package lk.ijse.Hostel_Management_System.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
-@Entity
-public class User {
-    @Id
+public class UserDTO {
     private String userId;
     private String userName;
     private String password;

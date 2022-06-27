@@ -25,12 +25,14 @@ public class BOFactory {
                 return new MakeReservationBOImpl();
             case RESERVATIONDETAILS:
                 return new ReservationDetailsBOImpl();
+            case USERMANAGEMENT:
+                return new UserManagementBOImpl();
             default:
                 return null;
         }
     }
 
     public enum BOTypes {
-        LOGIN, MANAGESTUDENTS, MANAGEROOMS, MAKERESERVATION, RESERVATIONDETAILS
+        LOGIN, MANAGESTUDENTS, MANAGEROOMS, MAKERESERVATION, RESERVATIONDETAILS, USERMANAGEMENT
     }
 }

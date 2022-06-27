@@ -12,6 +12,8 @@ import java.io.IOException;
 public class DashBoardFormController {
     public AnchorPane dashBoardFormContext;
     public AnchorPane childFormContext;
+    public static String userName;
+    public static String password;
 
     public void initialize(){
         AnimationUtil.windowAnimation(dashBoardFormContext);
@@ -38,6 +40,8 @@ public class DashBoardFormController {
     }
 
     public void userManagementFormOnAction(ActionEvent actionEvent) throws IOException {
+        UserManagementFormController.userName=userName;
+        UserManagementFormController.password=password;
         setUi("userManagement");
     }
 
