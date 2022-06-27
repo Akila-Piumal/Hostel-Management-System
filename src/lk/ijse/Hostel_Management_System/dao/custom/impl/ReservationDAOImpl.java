@@ -40,7 +40,15 @@ public class ReservationDAOImpl implements ReservationDAO {
 
     @Override
     public boolean update(Reservation entity) {
-        return false;
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        session.update(entity);
+
+        transaction.commit();
+        session.close();
+
+        return true;
     }
 
     @Override
@@ -81,5 +89,26 @@ public class ReservationDAOImpl implements ReservationDAO {
         session.close();
 
         return list.isEmpty() ? "R-001" : String.format("R-%03d", (Integer.parseInt(list.get(0).replace("R-", "")) + 1));
+    }
+
+    @Override
+    public boolean updateStatus(String res_id, String status) {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        String hql="UPDATE Reservation SET status=: new_Status WHERE res_id=: reservationId";
+        Query query = session.createQuery(hql);
+        query.setParameter("new_Status",status);
+        query.setParameter("reservationId",res_id);
+
+        int i = query.executeUpdate();
+
+        transaction.commit();
+        session.close();
+
+        if(i>0){
+            return true;
+        }
+        return false;
     }
 }
