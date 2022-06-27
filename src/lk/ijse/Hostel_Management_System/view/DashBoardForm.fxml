@@ -24,22 +24,22 @@
                   </LinearGradient>
                </fill>
             </Rectangle>
-            <Button layoutX="22.0" layoutY="178.0" mnemonicParsing="false" onAction="#manageStudentsFormOnAction" prefHeight="60.0" prefWidth="307.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 20; -fx-background-radius: 20;" text="Manage Students">
+            <Button layoutX="7.0" layoutY="152.0" mnemonicParsing="false" onAction="#manageStudentsFormOnAction" prefHeight="60.0" prefWidth="336.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 20; -fx-background-radius: 20;" text="Manage Students">
                <font>
                   <Font name="Arial Bold" size="28.0" />
                </font>
             </Button>
-            <Button layoutX="22.0" layoutY="288.0" mnemonicParsing="false" onAction="#manageRoomsFormOnAction" prefHeight="60.0" prefWidth="307.0" style="-fx-background-color: white; -fx-border-radius: 20; -fx-border-color: black; -fx-background-radius: 20;" text="Manage Rooms">
+            <Button layoutX="9.0" layoutY="252.0" mnemonicParsing="false" onAction="#manageRoomsFormOnAction" prefHeight="60.0" prefWidth="336.0" style="-fx-background-color: white; -fx-border-radius: 20; -fx-border-color: black; -fx-background-radius: 20;" text="Manage Rooms">
                <font>
                   <Font name="Arial Bold" size="28.0" />
                </font>
             </Button>
-            <Button layoutX="22.0" layoutY="398.0" mnemonicParsing="false" onAction="#reservationDetailsFormOnAction" prefHeight="60.0" prefWidth="307.0" style="-fx-background-color: white; -fx-border-radius: 20; -fx-border-color: black; -fx-background-radius: 20;" text="Reservation Details">
+            <Button layoutX="8.0" layoutY="356.0" mnemonicParsing="false" onAction="#reservationDetailsFormOnAction" prefHeight="60.0" prefWidth="336.0" style="-fx-background-color: white; -fx-border-radius: 20; -fx-border-color: black; -fx-background-radius: 20;" text="Reservation Details">
                <font>
                   <Font name="Arial Bold" size="28.0" />
                </font>
             </Button>
-            <Button layoutX="22.0" layoutY="508.0" mnemonicParsing="false" onAction="#makeReservationFormOnAction" prefHeight="60.0" prefWidth="307.0" style="-fx-background-color: white; -fx-border-radius: 20; -fx-border-color: black; -fx-background-radius: 20;" text="Make Reservation">
+            <Button layoutX="9.0" layoutY="457.0" mnemonicParsing="false" onAction="#makeReservationFormOnAction" prefHeight="60.0" prefWidth="336.0" style="-fx-background-color: white; -fx-border-radius: 20; -fx-border-color: black; -fx-background-radius: 20;" text="Make Reservation">
                <font>
                   <Font name="Arial Bold" size="28.0" />
                </font>
@@ -52,6 +52,16 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
+            <Button layoutX="7.0" layoutY="564.0" mnemonicParsing="false" onAction="#userManagementFormOnAction" prefHeight="60.0" prefWidth="336.0" style="-fx-background-color: white; -fx-border-radius: 20; -fx-border-color: black; -fx-background-radius: 20;" text="User Management">
+               <font>
+                  <Font name="Arial Bold" size="28.0" />
+               </font>
+            </Button>
+            <Button layoutX="9.0" layoutY="667.0" mnemonicParsing="false" onAction="#keyMoneyRemainStudentsFormOnAction" prefHeight="60.0" prefWidth="336.0" style="-fx-background-color: white; -fx-border-radius: 20; -fx-border-color: black; -fx-background-radius: 20;" text="Key-Money Remain Students">
+               <font>
+                  <Font name="Arial Bold" size="22.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="childFormContext" layoutX="349.0" prefHeight="800.0" prefWidth="848.0" style="-fx-background-color: white;">

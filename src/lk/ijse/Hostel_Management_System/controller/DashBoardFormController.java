@@ -37,6 +37,14 @@ public class DashBoardFormController {
         setUi("makeReservation");
     }
 
+    public void userManagementFormOnAction(ActionEvent actionEvent) throws IOException {
+        setUi("userManagement");
+    }
+
+    public void keyMoneyRemainStudentsFormOnAction(ActionEvent actionEvent) throws IOException {
+        setUi("keyMoneyRemainStudents");
+    }
+
     public void setUi(String URI) throws IOException {
         childFormContext.getChildren().clear();
         Parent parent = FXMLLoader.load(getClass().getResource("../view/"+ URI +"Form.fxml"));

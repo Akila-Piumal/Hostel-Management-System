@@ -108,7 +108,7 @@ public class ReservationDetailsFormController {
         loadAllReservationDetails();
     }
 
-    private void disableFields(){
+    private void disableFields() {
         btnUpdate.setDisable(true);
         txtReservationID.setDisable(true);
         txtDate.setDisable(true);
@@ -122,7 +122,7 @@ public class ReservationDetailsFormController {
         txtGender.setDisable(true);
     }
 
-    private void clearFields(){
+    private void clearFields() {
         tblReservationDetails.getSelectionModel().clearSelection();
         txtReservationID.clear();
         txtDate.clear();
