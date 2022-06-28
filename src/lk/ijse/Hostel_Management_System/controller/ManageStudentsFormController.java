@@ -4,11 +4,10 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import lk.ijse.Hostel_Management_System.bo.BOFactory;
@@ -16,11 +15,15 @@ import lk.ijse.Hostel_Management_System.bo.SuperBO;
 import lk.ijse.Hostel_Management_System.bo.custom.ManageStudentsBO;
 import lk.ijse.Hostel_Management_System.dto.StudentDTO;
 import lk.ijse.Hostel_Management_System.util.AnimationUtil;
+import lk.ijse.Hostel_Management_System.util.ValidationUtil;
 import lk.ijse.Hostel_Management_System.view.tdm.StudentTM;
+import org.apache.commons.lang3.Validate;
 
 import java.time.LocalDate;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 public class ManageStudentsFormController {
     public JFXTextField txtStudentId;
@@ -34,6 +37,8 @@ public class ManageStudentsFormController {
     public JFXButton btnDelete;
     public JFXButton btnAddStudent;
     public JFXButton btnSave;
+
+    LinkedHashMap<TextField, Pattern> map = new LinkedHashMap<>();
 
     ManageStudentsBO manageStudentsBO = (ManageStudentsBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.MANAGESTUDENTS);
 
@@ -73,6 +78,18 @@ public class ManageStudentsFormController {
                 cmbGender.setDisable(false);
             }
         });
+
+        Pattern idPattern = Pattern.compile("^S[0-9]{3,}$");
+        Pattern namePattern = Pattern.compile("^[A-z ]{3,15}$");
+        Pattern addressPatten = Pattern.compile("^[A-z0-9 ,/]{4,20}$");
+        Pattern contactPattern = Pattern.compile("^(078|075|077|074|071|070|076|072|034)[0-9]{7}$");
+        Pattern dobPattern=Pattern.compile("^(19[0-9]{2}|20[0-9]{2})-([11|12]{2}|0[1|2|3|4|5|6|7|8|9])-([1-2]{1}[0-9]{1}|0[1-9]{1}|3[1|0])$");
+
+        map.put(txtStudentId,idPattern);
+        map.put(txtName,namePattern);
+        map.put(txtAddress,addressPatten);
+        map.put(txtContactNo,contactPattern);
+        map.put(txtDob,dobPattern);
 
         loadAllStudentDetails();
 
@@ -170,6 +187,17 @@ public class ManageStudentsFormController {
 
             clearFields();
             tblStudentDetails.getSelectionModel().clearSelection();
+        }
+    }
+
+    public void textFields_Key_Released(KeyEvent keyEvent) {
+        ValidationUtil.validate(map,btnSave);
+        if (keyEvent.getCode()== KeyCode.ENTER){
+            Object response = ValidationUtil.validate(map, btnSave);
+            if (response instanceof TextField) {
+                TextField textField = (TextField) response;
+                textField.requestFocus();
+            }
         }
     }
 }
