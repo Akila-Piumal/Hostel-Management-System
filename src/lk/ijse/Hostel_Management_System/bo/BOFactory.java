@@ -29,12 +29,14 @@ public class BOFactory {
                 return new UserManagementBOImpl();
             case KEYMONEYREMAINSTUDENTS:
                 return new KeyMoneyRemainStudentsBOImpl();
+            case HOME:
+                return new HomeBOImpl();
             default:
                 return null;
         }
     }
 
     public enum BOTypes {
-        LOGIN, MANAGESTUDENTS, MANAGEROOMS, MAKERESERVATION, RESERVATIONDETAILS, USERMANAGEMENT,KEYMONEYREMAINSTUDENTS
+        LOGIN, MANAGESTUDENTS, MANAGEROOMS, MAKERESERVATION, RESERVATIONDETAILS, USERMANAGEMENT,KEYMONEYREMAINSTUDENTS,HOME
     }
 }

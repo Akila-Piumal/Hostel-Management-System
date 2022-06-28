@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane fx:id="homeFormContext" prefHeight="800.0" prefWidth="848.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Hostel_Management_System.controller.HomeFormController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="800.0" layoutY="7.0" stroke="WHITE" strokeType="INSIDE" width="848.0">
+         <fill>
+            <LinearGradient endX="0.7961165048543689" endY="1.0" startX="0.6990291262135923" startY="0.6941747572815533">
+               <stops>
+                  <Stop color="WHITE" />
+                  <Stop color="#5cf9ff" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Rectangle>
+      <Label layoutX="158.0" layoutY="23.0" text="Welcome To D24">
+         <font>
+            <Font name="System Bold Italic" size="63.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="0.44660194174757284" endY="0.5339805825242718" startX="0.44660194174757284" startY="0.5242718446601942">
+               <stops>
+                  <Stop color="#262b96" />
+                  <Stop color="#262b96" offset="0.007246376811594203" />
+                  <Stop color="#2d71c2" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="162.0" layoutX="68.0" layoutY="236.0" opacity="0.36" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="OUTSIDE" width="292.0">
+         <fill>
+            <RadialGradient centerX="0.6420454545454546" centerY="0.3058252427184465" cycleMethod="REFLECT" focusDistance="-0.4878048780487805" radius="1.0">
+               <stops>
+                  <Stop color="WHITE" />
+                  <Stop color="#5caaf8" offset="0.9927536231884058" />
+                  <Stop color="#5caaf8" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </fill>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Rectangle>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="160.0" layoutX="442.0" layoutY="238.0" opacity="0.37" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="OUTSIDE" width="316.0">
+         <fill>
+            <LinearGradient cycleMethod="REFLECT" endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#fffbfb" />
+                  <Stop color="#5ef784" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Rectangle>
+      <Label layoutX="173.0" layoutY="251.0" text="Total Rooms" textFill="#26149e">
+         <font>
+            <Font name="System Bold" size="26.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="60.0" fitWidth="80.0" layoutX="80.0" layoutY="262.0" pickOnBounds="true">
+         <image>
+            <Image url="@assests/images/room-key.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="60.0" fitWidth="80.0" layoutX="454.0" layoutY="270.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assests/images/small-bell.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="514.0" layoutY="251.0" text="Total Reservations" textFill="#14ae64">
+         <font>
+            <Font name="System Bold" size="26.0" />
+         </font>
+      </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="160.0" layoutX="263.0" layoutY="464.0" opacity="0.53" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="OUTSIDE" width="290.0">
+         <fill>
+            <RadialGradient centerX="0.23295454545454547" centerY="0.3058252427184465" cycleMethod="REFLECT" focusDistance="-0.4878048780487805" radius="1.0">
+               <stops>
+                  <Stop color="WHITE" />
+                  <Stop color="#d7f75e" offset="0.9927536231884058" />
+                  <Stop color="#d7f75e" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </fill>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Rectangle>
+      <Label layoutX="352.0" layoutY="481.0" text="Total Students" textFill="#9c9114">
+         <font>
+            <Font name="System Bold" size="26.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="276.0" layoutY="481.0" pickOnBounds="true">
+         <image>
+            <Image url="@assests/images/girl.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="80.0" fitWidth="136.0" layoutX="669.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assests/images/hostel%20(1).png" />
+         </image>
+      </ImageView>
+      <Label fx:id="lblTotalRooms" layoutX="230.0" layoutY="297.0">
+         <font>
+            <Font name="System Bold" size="46.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblTotalReservations" layoutX="600.0" layoutY="305.0">
+         <font>
+            <Font name="System Bold" size="46.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblTotalStudents" layoutX="404.0" layoutY="528.0">
+         <font>
+            <Font name="System Bold" size="46.0" />
+         </font>
+      </Label>
+      <Line endX="728.0" endY="-1.52587890625E-5" layoutX="120.0" layoutY="128.0" startX="-120.0" startY="-1.52587890625E-5" />
+      <Line endX="728.0" endY="-1.52587890625E-5" layoutX="120.0" layoutY="14.0" startX="-120.0" startY="-1.52587890625E-5" />
+      <JFXButton buttonType="RAISED" layoutX="658.0" layoutY="661.0" onAction="#btnLogOutOnAction" prefHeight="48.0" prefWidth="141.0" style="-fx-background-color: #e74c3c; -fx-background-radius: 8;" text="Log Out" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+   </children>
+</AnchorPane>

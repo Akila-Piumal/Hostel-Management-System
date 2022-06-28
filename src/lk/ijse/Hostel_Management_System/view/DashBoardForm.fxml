@@ -64,19 +64,6 @@
             </Button>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="childFormContext" layoutX="349.0" prefHeight="800.0" prefWidth="848.0" style="-fx-background-color: white;">
-         <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="800.0" layoutY="2.0" stroke="WHITE" strokeType="INSIDE" width="848.0">
-               <fill>
-                  <LinearGradient endX="0.7961165048543689" endY="1.0" startX="0.6990291262135923" startY="0.6941747572815533">
-                     <stops>
-                        <Stop color="WHITE" />
-                        <Stop color="#5cf9ff" offset="1.0" />
-                     </stops>
-                  </LinearGradient>
-               </fill>
-            </Rectangle>
-         </children>
-      </AnchorPane>
+      <AnchorPane fx:id="childFormContext" layoutX="349.0" prefHeight="800.0" prefWidth="848.0" style="-fx-background-color: white;" />
    </children>
 </AnchorPane>

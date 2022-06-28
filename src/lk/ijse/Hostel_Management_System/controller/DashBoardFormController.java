@@ -15,12 +15,14 @@ public class DashBoardFormController {
     public static String userName;
     public static String password;
 
-    public void initialize(){
+    public void initialize() throws IOException {
         AnimationUtil.windowAnimation(dashBoardFormContext);
+
+        setUi("home");
     }
 
-    public void backToHomeOnAction(MouseEvent mouseEvent) {
-
+    public void backToHomeOnAction(MouseEvent mouseEvent) throws IOException {
+        setUi("home");
     }
 
     public void manageStudentsFormOnAction(ActionEvent actionEvent) throws IOException {

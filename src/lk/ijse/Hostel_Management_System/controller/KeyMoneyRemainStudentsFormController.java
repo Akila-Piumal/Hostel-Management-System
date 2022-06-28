@@ -2,11 +2,13 @@ package lk.ijse.Hostel_Management_System.controller;
 
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import lk.ijse.Hostel_Management_System.bo.BOFactory;
 import lk.ijse.Hostel_Management_System.bo.SuperBO;
 import lk.ijse.Hostel_Management_System.bo.custom.KeyMoneyRemainStudentsBO;
 import lk.ijse.Hostel_Management_System.bo.custom.impl.KeyMoneyRemainStudentsBOImpl;
 import lk.ijse.Hostel_Management_System.entity.Room;
+import lk.ijse.Hostel_Management_System.util.AnimationUtil;
 import lk.ijse.Hostel_Management_System.util.FactoryConfiguration;
 import lk.ijse.Hostel_Management_System.view.tdm.RemainKeyMoneyDetailsTM;
 
@@ -18,6 +20,7 @@ public class KeyMoneyRemainStudentsFormController {
 
     private final KeyMoneyRemainStudentsBO keyMoneyRemainStudentsBO = (KeyMoneyRemainStudentsBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.KEYMONEYREMAINSTUDENTS);
     public TableView<RemainKeyMoneyDetailsTM> tblKeyMoneyRemainDetails;
+    public AnchorPane RemainKeyMoneyFormContext;
 
     public void initialize() {
         tblKeyMoneyRemainDetails.getColumns().get(0).setCellValueFactory(new PropertyValueFactory("studentId"));
@@ -28,6 +31,8 @@ public class KeyMoneyRemainStudentsFormController {
         tblKeyMoneyRemainDetails.getColumns().get(5).setCellValueFactory(new PropertyValueFactory("date"));
         tblKeyMoneyRemainDetails.getColumns().get(6).setCellValueFactory(new PropertyValueFactory("roomId"));
         tblKeyMoneyRemainDetails.getColumns().get(7).setCellValueFactory(new PropertyValueFactory("status"));
+
+        AnimationUtil.windowAnimation(RemainKeyMoneyFormContext);
 
         loadAllData();
     }
