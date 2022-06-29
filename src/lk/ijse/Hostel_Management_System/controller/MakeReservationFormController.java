@@ -8,6 +8,8 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.Hostel_Management_System.bo.BOFactory;
 import lk.ijse.Hostel_Management_System.bo.custom.MakeReservationBO;
@@ -17,11 +19,14 @@ import lk.ijse.Hostel_Management_System.dto.StudentDTO;
 import lk.ijse.Hostel_Management_System.entity.Room;
 import lk.ijse.Hostel_Management_System.entity.Student;
 import lk.ijse.Hostel_Management_System.util.AnimationUtil;
+import lk.ijse.Hostel_Management_System.util.ValidationUtil;
 import lk.ijse.Hostel_Management_System.view.tdm.ReservationTM;
 
 import java.time.LocalDate;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 public class MakeReservationFormController {
     public Label lblReservationID;
@@ -44,6 +49,9 @@ public class MakeReservationFormController {
     public AnchorPane makeReservationFormContext;
 
     MakeReservationBO makeReservationBO = (MakeReservationBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.MAKERESERVATION);
+
+    LinkedHashMap<TextField, Pattern> map=new LinkedHashMap<>();
+    LinkedHashMap<TextField, Pattern> map2=new LinkedHashMap<>();
 
     public void initialize() {
         tblReservationDetails.getColumns().get(0).setCellValueFactory(new PropertyValueFactory("res_id"));
@@ -97,9 +105,23 @@ public class MakeReservationFormController {
                 txtType.setText(newValue.getType());
                 txtKeyMoney.setText(newValue.getKeyMoney());
                 txtQtyOnHand.setText(String.valueOf(newValue.getQty()));
-                btnReserve.setDisable(false);
             }
         });
+
+        Pattern idPattern = Pattern.compile("^S[0-9]{3,}$");
+        Pattern namePattern = Pattern.compile("^[A-z ]{3,15}$");
+        Pattern addressPatten = Pattern.compile("^[A-z0-9 ,/]{4,20}$");
+        Pattern contactPattern = Pattern.compile("^(078|075|077|074|071|070|076|072|034)[0-9]{7}$");
+        Pattern dobPattern=Pattern.compile("^(19[0-9]{2}|20[0-9]{2})-([11|12]{2}|0[1|2|3|4|5|6|7|8|9])-([1-2]{1}[0-9]{1}|0[1-9]{1}|3[1|0])$");
+        Pattern paidKeyMoneyPattern = Pattern.compile("^[0-9][0-9]*(.[0-9]{2})?$");
+
+        map.put(txtStudentId,idPattern);
+        map.put(txtName,namePattern);
+        map.put(txtAddress,addressPatten);
+        map.put(txtContactNo,contactPattern);
+        map.put(txtDob,dobPattern);
+
+        map2.put(txtPaidKeyMoney,paidKeyMoneyPattern);
 
         loadAllReservationDetails();
     }
@@ -193,6 +215,10 @@ public class MakeReservationFormController {
     }
 
     public void btnReserveOnAction(ActionEvent actionEvent) {
+        ReserveRoom();
+    }
+
+    private void ReserveRoom() {
         double keyMoney=Double.parseDouble(txtKeyMoney.getText());
         double paidKeyMoney=Double.parseDouble(txtPaidKeyMoney.getText());
         String status="";
@@ -225,6 +251,27 @@ public class MakeReservationFormController {
             txtQtyOnHand.clear();
             lblReservationID.setText(generateNewReservationID());
         }
+    }
 
+    public void textFields_Key_Released(KeyEvent keyEvent) {
+        ValidationUtil.validate(map,btnNewStudent);
+        if (keyEvent.getCode()== KeyCode.ENTER){
+            Object response = ValidationUtil.validate(map, btnNewStudent);
+            if (response instanceof TextField) {
+                TextField textField = (TextField) response;
+                textField.requestFocus();
+            }
+        }
+
+        ValidationUtil.validate(map2,btnReserve);
+        if (keyEvent.getCode()== KeyCode.ENTER){
+            Object response = ValidationUtil.validate(map2, btnReserve);
+            if (response instanceof TextField) {
+                TextField textField = (TextField) response;
+                textField.requestFocus();
+            }else if (response instanceof Boolean){
+                ReserveRoom();
+            }
+        }
     }
 }
