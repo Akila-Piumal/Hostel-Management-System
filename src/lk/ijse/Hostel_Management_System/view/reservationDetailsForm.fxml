@@ -50,7 +50,7 @@
       <JFXTextField fx:id="txtReservationID" labelFloat="true" layoutX="55.0" layoutY="137.0" prefHeight="31.0" prefWidth="104.0" promptText="Reservation ID" />
       <JFXTextField fx:id="txtDate" labelFloat="true" layoutX="215.0" layoutY="138.0" prefHeight="31.0" prefWidth="96.0" promptText="Date" />
       <JFXTextField fx:id="txtRoomID" labelFloat="true" layoutX="368.0" layoutY="137.0" prefHeight="31.0" prefWidth="96.0" promptText="Room ID" />
-      <JFXTextField fx:id="txtStatus" labelFloat="true" layoutX="531.0" layoutY="137.0" prefHeight="31.0" prefWidth="96.0" promptText="Status" />
+      <JFXTextField fx:id="txtStatus" labelFloat="true" layoutX="531.0" layoutY="137.0" onKeyReleased="#text_Fields_key_Released" prefHeight="31.0" prefWidth="96.0" promptText="Status" />
       <JFXButton fx:id="btnUpdate" buttonType="RAISED" layoutX="687.0" layoutY="132.0" onAction="#btnUpdateOnAction" prefHeight="31.0" prefWidth="111.0" style="-fx-background-color: #55E6C1; -fx-background-radius: 8;" text="Update" textFill="WHITE">
          <font>
             <Font name="System Bold" size="20.0" />

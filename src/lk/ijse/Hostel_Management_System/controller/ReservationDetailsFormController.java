@@ -6,6 +6,8 @@ import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.Hostel_Management_System.bo.BOFactory;
 import lk.ijse.Hostel_Management_System.bo.custom.ReservationDetailsBO;
@@ -13,10 +15,13 @@ import lk.ijse.Hostel_Management_System.dto.ReservationDTO;
 import lk.ijse.Hostel_Management_System.dto.RoomDTO;
 import lk.ijse.Hostel_Management_System.dto.StudentDTO;
 import lk.ijse.Hostel_Management_System.util.AnimationUtil;
+import lk.ijse.Hostel_Management_System.util.ValidationUtil;
 import lk.ijse.Hostel_Management_System.view.tdm.ReservationTM;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 public class ReservationDetailsFormController {
     private final ReservationDetailsBO reservationDetailsBO = (ReservationDetailsBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.RESERVATIONDETAILS);
@@ -33,6 +38,8 @@ public class ReservationDetailsFormController {
     public JFXTextField txtStatus;
     public JFXButton btnUpdate;
     public AnchorPane reservationDetailsFormContext;
+
+    LinkedHashMap<TextField, Pattern> map = new LinkedHashMap<>();
 
     public void initialize() {
         AnimationUtil.windowAnimation(reservationDetailsFormContext);
@@ -91,7 +98,6 @@ public class ReservationDetailsFormController {
                 txtDate.setText(String.valueOf(newValue.getDate()));
                 txtRoomID.setText(newValue.getRoomId());
                 txtStatus.setText(newValue.getStatus());
-                btnUpdate.setDisable(false);
 
                 StudentDTO student = reservationDetailsBO.getStudent(newValue.getStudentId());
                 txtStudentID.setText(student.getStudentId());
@@ -104,6 +110,10 @@ public class ReservationDetailsFormController {
                 txtStatus.requestFocus();
             }
         });
+
+        Pattern statusPattern = Pattern.compile("^paid|Paid|[0-9][0-9]{0,}(.[0-9]{2})?$");
+
+        map.put(txtStatus, statusPattern);
 
         loadAllReservationDetails();
     }
@@ -144,6 +154,11 @@ public class ReservationDetailsFormController {
     }
 
     public void btnUpdateOnAction(ActionEvent actionEvent) {
+        updateReservation();
+
+    }
+
+    private void updateReservation() {
         ReservationTM selectedItem = tblReservationDetails.getSelectionModel().getSelectedItem();
         if (selectedItem != null) {
             if (reservationDetailsBO.updateReservationStatus(selectedItem.getRes_id(), txtStatus.getText())) {
@@ -153,6 +168,19 @@ public class ReservationDetailsFormController {
                 clearFields();
                 disableFields();
                 tblReservationDetails.requestFocus();
+            }
+        }
+    }
+
+    public void text_Fields_key_Released(KeyEvent keyEvent) {
+        ValidationUtil.validate(map, btnUpdate);
+        if (keyEvent.getCode() == KeyCode.ENTER) {
+            Object response = ValidationUtil.validate(map, btnUpdate);
+            if (response instanceof TextField) {
+                TextField textField = (TextField) response;
+                textField.requestFocus();
+            } else if (response instanceof Boolean) {
+                updateReservation();
             }
         }
     }
