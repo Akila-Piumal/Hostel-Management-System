@@ -50,8 +50,8 @@ public class MakeReservationFormController {
 
     MakeReservationBO makeReservationBO = (MakeReservationBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.MAKERESERVATION);
 
-    LinkedHashMap<TextField, Pattern> map=new LinkedHashMap<>();
-    LinkedHashMap<TextField, Pattern> map2=new LinkedHashMap<>();
+    LinkedHashMap<TextField, Pattern> map = new LinkedHashMap<>();
+    LinkedHashMap<TextField, Pattern> map2 = new LinkedHashMap<>();
 
     public void initialize() {
         tblReservationDetails.getColumns().get(0).setCellValueFactory(new PropertyValueFactory("res_id"));
@@ -83,7 +83,7 @@ public class MakeReservationFormController {
         cmbGender.getItems().add("FeMale");
 
         cmbStudentID.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue!=null){
+            if (newValue != null) {
                 txtName.setDisable(false);
                 txtAddress.setDisable(false);
                 txtContactNo.setDisable(false);
@@ -98,7 +98,7 @@ public class MakeReservationFormController {
         });
 
         cmbRoomTypeID.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue!=null){
+            if (newValue != null) {
                 txtType.setDisable(false);
                 txtKeyMoney.setDisable(false);
                 txtQtyOnHand.setDisable(false);
@@ -112,16 +112,16 @@ public class MakeReservationFormController {
         Pattern namePattern = Pattern.compile("^[A-z ]{3,15}$");
         Pattern addressPatten = Pattern.compile("^[A-z0-9 ,/]{4,20}$");
         Pattern contactPattern = Pattern.compile("^(078|075|077|074|071|070|076|072|034)[0-9]{7}$");
-        Pattern dobPattern=Pattern.compile("^(19[0-9]{2}|20[0-9]{2})-([11|12]{2}|0[1|2|3|4|5|6|7|8|9])-([1-2]{1}[0-9]{1}|0[1-9]{1}|3[1|0])$");
+        Pattern dobPattern = Pattern.compile("^(19[0-9]{2}|20[0-9]{2})-([11|12]{2}|0[1|2|3|4|5|6|7|8|9])-([1-2]{1}[0-9]{1}|0[1-9]{1}|3[1|0])$");
         Pattern paidKeyMoneyPattern = Pattern.compile("^[0-9][0-9]*(.[0-9]{2})?$");
 
-        map.put(txtStudentId,idPattern);
-        map.put(txtName,namePattern);
-        map.put(txtAddress,addressPatten);
-        map.put(txtContactNo,contactPattern);
-        map.put(txtDob,dobPattern);
+        map.put(txtStudentId, idPattern);
+        map.put(txtName, namePattern);
+        map.put(txtAddress, addressPatten);
+        map.put(txtContactNo, contactPattern);
+        map.put(txtDob, dobPattern);
 
-        map2.put(txtPaidKeyMoney,paidKeyMoneyPattern);
+        map2.put(txtPaidKeyMoney, paidKeyMoneyPattern);
 
         loadAllReservationDetails();
     }
@@ -129,7 +129,7 @@ public class MakeReservationFormController {
     private void loadAllReservationDetails() {
         List<ReservationDTO> allReservations = makeReservationBO.getAllReservations();
         for (ReservationDTO reservationDTO : allReservations) {
-            tblReservationDetails.getItems().add(new ReservationTM(reservationDTO.getRes_id(),reservationDTO.getDate(),reservationDTO.getRoom().getRoomTypeId(),reservationDTO.getStudent().getStudentId(),reservationDTO.getStatus()));
+            tblReservationDetails.getItems().add(new ReservationTM(reservationDTO.getRes_id(), reservationDTO.getDate(), reservationDTO.getRoom().getRoomTypeId(), reservationDTO.getStudent().getStudentId(), reservationDTO.getStatus()));
         }
     }
 
@@ -219,24 +219,24 @@ public class MakeReservationFormController {
     }
 
     private void ReserveRoom() {
-        double keyMoney=Double.parseDouble(txtKeyMoney.getText());
-        double paidKeyMoney=Double.parseDouble(txtPaidKeyMoney.getText());
-        String status="";
-        if (keyMoney==paidKeyMoney){
-            status="Paid";
-        }else{
-            double balanceToPay=keyMoney-paidKeyMoney;
-            status=String.valueOf(balanceToPay);
+        double keyMoney = Double.parseDouble(txtKeyMoney.getText());
+        double paidKeyMoney = Double.parseDouble(txtPaidKeyMoney.getText());
+        String status = "";
+        if (keyMoney == paidKeyMoney) {
+            status = "Paid";
+        } else {
+            double balanceToPay = keyMoney - paidKeyMoney;
+            status = String.valueOf(balanceToPay);
         }
         StudentDTO studentDTO = cmbStudentID.getValue();
         RoomDTO roomDTO = cmbRoomTypeID.getValue();
-        Student student=new Student(studentDTO.getStudentId(),studentDTO.getName(),studentDTO.getAddress(),studentDTO.getContactNo(),studentDTO.getDob(),studentDTO.getGender());
-        Room room=new Room(roomDTO.getRoomTypeId(),roomDTO.getType(),roomDTO.getKeyMoney(),roomDTO.getQty()-1);
+        Student student = new Student(studentDTO.getStudentId(), studentDTO.getName(), studentDTO.getAddress(), studentDTO.getContactNo(), studentDTO.getDob(), studentDTO.getGender());
+        Room room = new Room(roomDTO.getRoomTypeId(), roomDTO.getType(), roomDTO.getKeyMoney(), roomDTO.getQty() - 1);
 
-        if (makeReservationBO.saveReservation(new ReservationDTO(lblReservationID.getText(), LocalDate.parse(lblDate.getText()),status,student,room))) {
-            tblReservationDetails.getItems().add(new ReservationTM(lblReservationID.getText(),LocalDate.parse(lblDate.getText()),room.getRoomTypeId(),student.getStudentId(),status));
-            new Alert(Alert.AlertType.CONFIRMATION,"Reserved").show();
-            makeReservationBO.updateRoomDetails(new RoomDTO(room.getRoomTypeId(),room.getType(),room.getKeyMoney(),room.getQty()));
+        if (makeReservationBO.saveReservation(new ReservationDTO(lblReservationID.getText(), LocalDate.parse(lblDate.getText()), status, student, room))) {
+            tblReservationDetails.getItems().add(new ReservationTM(lblReservationID.getText(), LocalDate.parse(lblDate.getText()), room.getRoomTypeId(), student.getStudentId(), status));
+            new Alert(Alert.AlertType.CONFIRMATION, "Reserved").show();
+            makeReservationBO.updateRoomDetails(new RoomDTO(room.getRoomTypeId(), room.getType(), room.getKeyMoney(), room.getQty()));
             txtPaidKeyMoney.clear();
             cmbStudentID.getSelectionModel().clearSelection();
             cmbRoomTypeID.getSelectionModel().clearSelection();
@@ -254,8 +254,8 @@ public class MakeReservationFormController {
     }
 
     public void textFields_Key_Released(KeyEvent keyEvent) {
-        ValidationUtil.validate(map,btnNewStudent);
-        if (keyEvent.getCode()== KeyCode.ENTER){
+        ValidationUtil.validate(map, btnNewStudent);
+        if (keyEvent.getCode() == KeyCode.ENTER) {
             Object response = ValidationUtil.validate(map, btnNewStudent);
             if (response instanceof TextField) {
                 TextField textField = (TextField) response;
@@ -263,13 +263,13 @@ public class MakeReservationFormController {
             }
         }
 
-        ValidationUtil.validate(map2,btnReserve);
-        if (keyEvent.getCode()== KeyCode.ENTER){
+        ValidationUtil.validate(map2, btnReserve);
+        if (keyEvent.getCode() == KeyCode.ENTER) {
             Object response = ValidationUtil.validate(map2, btnReserve);
             if (response instanceof TextField) {
                 TextField textField = (TextField) response;
                 textField.requestFocus();
-            }else if (response instanceof Boolean){
+            } else if (response instanceof Boolean) {
                 ReserveRoom();
             }
         }
