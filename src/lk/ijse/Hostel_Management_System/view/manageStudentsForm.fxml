@@ -38,12 +38,12 @@
             </LinearGradient>
          </textFill>
       </Label>
-      <JFXTextField fx:id="txtStudentId" layoutX="23.0" layoutY="168.0" onKeyReleased="#textFields_Key_Released" prefHeight="31.0" prefWidth="84.0" promptText="Student Id" />
-      <JFXTextField fx:id="txtName" layoutX="127.0" layoutY="168.0" onKeyReleased="#textFields_Key_Released" prefHeight="31.0" prefWidth="136.0" promptText="Name" />
-      <JFXTextField fx:id="txtAddress" layoutX="286.0" layoutY="168.0" onKeyReleased="#textFields_Key_Released" prefHeight="31.0" prefWidth="170.0" promptText="Address" />
-      <JFXTextField fx:id="txtContactNo" layoutX="491.0" layoutY="168.0" onKeyReleased="#textFields_Key_Released" prefHeight="31.0" prefWidth="118.0" promptText="Con. No" />
-      <JFXTextField fx:id="txtDob" layoutX="609.0" layoutY="168.0" onKeyReleased="#textFields_Key_Released" prefHeight="31.0" prefWidth="111.0" promptText="dob" />
-      <JFXComboBox fx:id="cmbGender" layoutX="737.0" layoutY="168.0" prefHeight="31.0" prefWidth="105.0" promptText="Gender" />
+      <JFXTextField fx:id="txtStudentId" labelFloat="true" layoutX="23.0" layoutY="168.0" onKeyReleased="#textFields_Key_Released" prefHeight="31.0" prefWidth="84.0" promptText="Student Id" />
+      <JFXTextField fx:id="txtName" labelFloat="true" layoutX="127.0" layoutY="168.0" onKeyReleased="#textFields_Key_Released" prefHeight="31.0" prefWidth="136.0" promptText="Name" />
+      <JFXTextField fx:id="txtAddress" labelFloat="true" layoutX="286.0" layoutY="168.0" onKeyReleased="#textFields_Key_Released" prefHeight="31.0" prefWidth="159.0" promptText="Address" />
+      <JFXTextField fx:id="txtContactNo" labelFloat="true" layoutX="467.0" layoutY="168.0" onKeyReleased="#textFields_Key_Released" prefHeight="31.0" prefWidth="105.0" promptText="Con. No" />
+      <JFXTextField fx:id="txtDob" labelFloat="true" layoutX="597.0" layoutY="168.0" onKeyReleased="#textFields_Key_Released" prefHeight="31.0" prefWidth="111.0" promptText="dob" />
+      <JFXComboBox fx:id="cmbGender" labelFloat="true" layoutX="737.0" layoutY="168.0" prefHeight="31.0" prefWidth="105.0" promptText="Gender" />
       <JFXButton fx:id="btnSave" buttonType="RAISED" layoutX="243.0" layoutY="236.0" onAction="#btnSaveStudentOnAction" prefHeight="48.0" prefWidth="111.0" style="-fx-background-color: #55E6C1; -fx-background-radius: 8;" text="Save" textFill="WHITE">
          <font>
             <Font name="System Bold" size="22.0" />

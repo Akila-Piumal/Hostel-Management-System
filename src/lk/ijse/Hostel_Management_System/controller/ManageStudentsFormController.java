@@ -169,6 +169,12 @@ public class ManageStudentsFormController {
             manageStudentsBO.saveStudent(new StudentDTO(txtStudentId.getText(),txtName.getText(),txtAddress.getText(),txtContactNo.getText(), LocalDate.parse(txtDob.getText()),cmbGender.getValue()));
             tblStudentDetails.getItems().add(new StudentTM(txtStudentId.getText(),txtName.getText(),txtAddress.getText(),txtContactNo.getText(),LocalDate.parse(txtDob.getText()),cmbGender.getValue()));
             new Alert(Alert.AlertType.CONFIRMATION,"Saved..!").show();
+            txtStudentId.clear();
+            txtName.clear();
+            txtAddress.clear();
+            txtDob.clear();
+            txtContactNo.clear();
+            cmbGender.getSelectionModel().clearSelection();
         }else{
             if(!existStudent(txtStudentId.getText())){
                 new Alert(Alert.AlertType.ERROR,"Student Not Exists").show();
