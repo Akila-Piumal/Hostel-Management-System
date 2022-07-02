@@ -23,7 +23,6 @@ public class FactoryConfiguration {
             e.printStackTrace();
             throw new RuntimeException("There is issue in factory Configuration");
         }
-
     }
 
     public static FactoryConfiguration getInstance() {

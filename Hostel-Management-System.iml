@@ -28,5 +28,7 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="bcprov-jdk15on-1.64" level="project" />
+    <orderEntry type="library" name="client-runtime-5.8.5" level="project" />
+    <orderEntry type="library" name="antlr-2.7.71" level="project" />
   </component>
 </module>

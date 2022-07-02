@@ -1,0 +1,33 @@
+<component name="libraryTable">
+  <library name="client-runtime-5.8.5">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/src/lk/ijse/Hostel_Management_System/lib/ehcahe libraries/client-runtime-5.8.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/lk/ijse/Hostel_Management_System/lib/ehcahe libraries/common-inet-support-5.8.12.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/lk/ijse/Hostel_Management_System/lib/ehcahe libraries/common-json-support-5.8.12.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/lk/ijse/Hostel_Management_System/lib/ehcahe libraries/common-nomad-5.8.12.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/lk/ijse/Hostel_Management_System/lib/ehcahe libraries/common-structures-5.8.12.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/lk/ijse/Hostel_Management_System/lib/ehcahe libraries/diagnostic-client-5.8.12.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/lk/ijse/Hostel_Management_System/lib/ehcahe libraries/diagnostic-common-5.8.12.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/lk/ijse/Hostel_Management_System/lib/ehcahe libraries/diagnostic-model-5.8.12.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/lk/ijse/Hostel_Management_System/lib/ehcahe libraries/dynamic-config-api-5.8.12.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/lk/ijse/Hostel_Management_System/lib/ehcahe libraries/dynamic-config-cli-api-5.8.12.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/lk/ijse/Hostel_Management_System/lib/ehcahe libraries/dynamic-config-cli-config-tool-5.8.12.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/lk/ijse/Hostel_Management_System/lib/ehcahe libraries/dynamic-config-cli-support-5.8.12.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/lk/ijse/Hostel_Management_System/lib/ehcahe libraries/dynamic-config-model-5.8.12.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/lk/ijse/Hostel_Management_System/lib/ehcahe libraries/dynamic-config-nomad-entity-client-5.8.12.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/lk/ijse/Hostel_Management_System/lib/ehcahe libraries/dynamic-config-nomad-entity-common-5.8.12.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/lk/ijse/Hostel_Management_System/lib/ehcahe libraries/jackson-annotations-2.12.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/lk/ijse/Hostel_Management_System/lib/ehcahe libraries/jackson-core-2.12.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/lk/ijse/Hostel_Management_System/lib/ehcahe libraries/jackson-databind-2.12.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/lk/ijse/Hostel_Management_System/lib/ehcahe libraries/jackson-datatype-jdk8-2.12.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/lk/ijse/Hostel_Management_System/lib/ehcahe libraries/jackson-datatype-jsr310-2.12.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/lk/ijse/Hostel_Management_System/lib/ehcahe libraries/jcommander-1.78.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/lk/ijse/Hostel_Management_System/lib/ehcahe libraries/logback-classic-1.2.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/lk/ijse/Hostel_Management_System/lib/ehcahe libraries/logback-core-1.2.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/lk/ijse/Hostel_Management_System/lib/ehcahe libraries/slf4j-api-1.7.25.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/lk/ijse/Hostel_Management_System/lib/ehcahe libraries/terracotta-utilities-tools-0.0.9.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

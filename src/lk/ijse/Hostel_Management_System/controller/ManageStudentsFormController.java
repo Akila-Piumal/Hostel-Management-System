@@ -42,7 +42,7 @@ public class ManageStudentsFormController {
 
     ManageStudentsBO manageStudentsBO = (ManageStudentsBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.MANAGESTUDENTS);
 
-    public void initialize(){
+    public void initialize() {
         AnimationUtil.windowAnimation(manageStudentsFormContext);
 
         tblStudentDetails.getColumns().get(0).setCellValueFactory(new PropertyValueFactory("studentId"));
@@ -58,11 +58,11 @@ public class ManageStudentsFormController {
         clearFields();
 
         tblStudentDetails.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            btnDelete.setDisable(newValue==null);
-            btnSave.setDisable(newValue==null);
-            btnSave.setText(newValue !=null ? "Update":"Save");
+            btnDelete.setDisable(newValue == null);
+            btnSave.setDisable(newValue == null);
+            btnSave.setText(newValue != null ? "Update" : "Save");
 
-            if (newValue != null){
+            if (newValue != null) {
                 txtStudentId.setText(newValue.getStudentId());
                 txtName.setText(newValue.getName());
                 txtAddress.setText(newValue.getAddress());
@@ -83,13 +83,13 @@ public class ManageStudentsFormController {
         Pattern namePattern = Pattern.compile("^[A-z ]{3,15}$");
         Pattern addressPatten = Pattern.compile("^[A-z0-9 ,/]{4,20}$");
         Pattern contactPattern = Pattern.compile("^(078|075|077|074|071|070|076|072|034)[0-9]{7}$");
-        Pattern dobPattern=Pattern.compile("^(19[0-9]{2}|20[0-9]{2})-([11|12]{2}|0[1|2|3|4|5|6|7|8|9])-([1-2]{1}[0-9]{1}|0[1-9]{1}|3[1|0])$");
+        Pattern dobPattern = Pattern.compile("^(19[0-9]{2}|20[0-9]{2})-([11|12]{2}|0[1|2|3|4|5|6|7|8|9])-([1-2]{1}[0-9]{1}|0[1-9]{1}|3[1|0])$");
 
-        map.put(txtStudentId,idPattern);
-        map.put(txtName,namePattern);
-        map.put(txtAddress,addressPatten);
-        map.put(txtContactNo,contactPattern);
-        map.put(txtDob,dobPattern);
+        map.put(txtStudentId, idPattern);
+        map.put(txtName, namePattern);
+        map.put(txtAddress, addressPatten);
+        map.put(txtContactNo, contactPattern);
+        map.put(txtDob, dobPattern);
 
         loadAllStudentDetails();
 
@@ -116,20 +116,20 @@ public class ManageStudentsFormController {
         tblStudentDetails.getItems().clear();
         List<StudentDTO> allStudents = manageStudentsBO.getAllStudents();
         for (StudentDTO student : allStudents) {
-            tblStudentDetails.getItems().add(new StudentTM(student.getStudentId(),student.getName(),student.getAddress(),student.getContactNo(),student.getDob(),student.getGender()));
+            tblStudentDetails.getItems().add(new StudentTM(student.getStudentId(), student.getName(), student.getAddress(), student.getContactNo(), student.getDob(), student.getGender()));
         }
     }
 
     public void btnDeleteStudentOnAction(ActionEvent actionEvent) {
         String studentId = tblStudentDetails.getSelectionModel().getSelectedItem().getStudentId();
-        if (!existStudent(studentId)){
-            new Alert(Alert.AlertType.WARNING,"Student is not Exists !!").show();
+        if (!existStudent(studentId)) {
+            new Alert(Alert.AlertType.WARNING, "Student is not Exists !!").show();
         }
-        Alert alert=new Alert(Alert.AlertType.WARNING,"Are You Sure ?", ButtonType.YES,ButtonType.NO);
+        Alert alert = new Alert(Alert.AlertType.WARNING, "Are You Sure ?", ButtonType.YES, ButtonType.NO);
         Optional<ButtonType> buttonType = alert.showAndWait();
-        if (buttonType.get().equals(ButtonType.YES)){
+        if (buttonType.get().equals(ButtonType.YES)) {
             if (manageStudentsBO.deleteStudent(studentId)) {
-                new Alert(Alert.AlertType.CONFIRMATION,"Deleted..!").show();
+                new Alert(Alert.AlertType.CONFIRMATION, "Deleted..!").show();
                 tblStudentDetails.getItems().remove(tblStudentDetails.getSelectionModel().getSelectedItem());
                 tblStudentDetails.getSelectionModel().clearSelection();
                 clearFields();
@@ -162,25 +162,25 @@ public class ManageStudentsFormController {
     }
 
     public void btnSaveStudentOnAction(ActionEvent actionEvent) {
-        if(btnSave.getText().equalsIgnoreCase("Save")){
-            if (existStudent(txtStudentId.getText())){
-                new Alert(Alert.AlertType.WARNING,"Student Already Exists").show();
+        if (btnSave.getText().equalsIgnoreCase("Save")) {
+            if (existStudent(txtStudentId.getText())) {
+                new Alert(Alert.AlertType.WARNING, "Student Already Exists").show();
             }
-            manageStudentsBO.saveStudent(new StudentDTO(txtStudentId.getText(),txtName.getText(),txtAddress.getText(),txtContactNo.getText(), LocalDate.parse(txtDob.getText()),cmbGender.getValue()));
-            tblStudentDetails.getItems().add(new StudentTM(txtStudentId.getText(),txtName.getText(),txtAddress.getText(),txtContactNo.getText(),LocalDate.parse(txtDob.getText()),cmbGender.getValue()));
-            new Alert(Alert.AlertType.CONFIRMATION,"Saved..!").show();
+            manageStudentsBO.saveStudent(new StudentDTO(txtStudentId.getText(), txtName.getText(), txtAddress.getText(), txtContactNo.getText(), LocalDate.parse(txtDob.getText()), cmbGender.getValue()));
+            tblStudentDetails.getItems().add(new StudentTM(txtStudentId.getText(), txtName.getText(), txtAddress.getText(), txtContactNo.getText(), LocalDate.parse(txtDob.getText()), cmbGender.getValue()));
+            new Alert(Alert.AlertType.CONFIRMATION, "Saved..!").show();
             txtStudentId.clear();
             txtName.clear();
             txtAddress.clear();
             txtDob.clear();
             txtContactNo.clear();
             cmbGender.getSelectionModel().clearSelection();
-        }else{
-            if(!existStudent(txtStudentId.getText())){
-                new Alert(Alert.AlertType.ERROR,"Student Not Exists").show();
+        } else {
+            if (!existStudent(txtStudentId.getText())) {
+                new Alert(Alert.AlertType.ERROR, "Student Not Exists").show();
             }
-            manageStudentsBO.updateStudent(new StudentDTO(txtStudentId.getText(),txtName.getText(),txtAddress.getText(),txtContactNo.getText(),LocalDate.parse(txtDob.getText()),cmbGender.getValue()));
-            new Alert(Alert.AlertType.CONFIRMATION,"Updated..!").show();
+            manageStudentsBO.updateStudent(new StudentDTO(txtStudentId.getText(), txtName.getText(), txtAddress.getText(), txtContactNo.getText(), LocalDate.parse(txtDob.getText()), cmbGender.getValue()));
+            new Alert(Alert.AlertType.CONFIRMATION, "Updated..!").show();
 
             StudentTM selectedItem = tblStudentDetails.getSelectionModel().getSelectedItem();
             selectedItem.setStudentId(txtStudentId.getText());
@@ -197,8 +197,8 @@ public class ManageStudentsFormController {
     }
 
     public void textFields_Key_Released(KeyEvent keyEvent) {
-        ValidationUtil.validate(map,btnSave);
-        if (keyEvent.getCode()== KeyCode.ENTER){
+        ValidationUtil.validate(map, btnSave);
+        if (keyEvent.getCode() == KeyCode.ENTER) {
             Object response = ValidationUtil.validate(map, btnSave);
             if (response instanceof TextField) {
                 TextField textField = (TextField) response;
